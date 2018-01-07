@@ -13,18 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Sineshift.DogecoinWidget
+namespace Sineshift.DogecoinWidget.UI
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for OverviewView.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class OverviewView : UserControl
 	{
-		public MainWindow()
+		public OverviewView(OverviewViewModel vm)
 		{
 			InitializeComponent();
 
-			this.mainRegion.Content = new Bootstrapper().Run();
+			this.DataContext = vm;
 		}
 	}
 }

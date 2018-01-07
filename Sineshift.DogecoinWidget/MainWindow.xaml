@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sineshift.DogecoinWidget"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Dogecoin Widget" Height="350" Width="525">
     <Grid>
-        
-    </Grid>
+		<ContentControl Name="mainRegion" />
+	</Grid>
 </Window>

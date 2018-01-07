@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B3DEDCFC-111B-40F4-A79C-6F116810B0A8}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Sineshift.DogecoinWidget</RootNamespace>
-    <AssemblyName>Sineshift.DogecoinWidget</AssemblyName>
+    <ProjectGuid>{927EF5D8-CA3B-41F9-9BC9-AFA5812503AF}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Sineshift.DogecoinWidget.Common</RootNamespace>
+    <AssemblyName>Sineshift.DogecoinWidget.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\Sineshift.DogecoinWidget\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -50,25 +50,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="Bases\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,35 +64,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ServiceLocation\IServiceLocator.cs" />
+    <Compile Include="ServiceLocation\ServiceLocator.cs" />
+    <Compile Include="Util\ReflectionUtil.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sineshift.DogecoinWidget.Common\Sineshift.DogecoinWidget.Common.csproj">
-      <Project>{927ef5d8-ca3b-41f9-9bc9-afa5812503af}</Project>
-      <Name>Sineshift.DogecoinWidget.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="Sineshift.DogecoinWidget.Common.UI\Sineshift.DogecoinWidget.Common.UI.csproj">
-      <Project>{898e0d50-ae0f-4279-89a7-e050ea11d5af}</Project>
-      <Name>Sineshift.DogecoinWidget.Common.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="Sineshift.DogecoinWidget.Services\Sineshift.DogecoinWidget.Services.csproj">
-      <Project>{13467a52-4a7b-492d-bab7-f8e0cd917e2e}</Project>
-      <Name>Sineshift.DogecoinWidget.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="Sineshift.DogecoinWidget.UI\Sineshift.DogecoinWidget.UI.csproj">
-      <Project>{ecda1177-982d-44f5-aa43-5736361dd628}</Project>
-      <Name>Sineshift.DogecoinWidget.UI</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
