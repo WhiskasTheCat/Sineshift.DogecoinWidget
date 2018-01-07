@@ -74,10 +74,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Sineshift.DogecoinWidget.Common\Sineshift.DogecoinWidget.Common.csproj">
-      <Project>{927ef5d8-ca3b-41f9-9bc9-afa5812503af}</Project>
-      <Name>Sineshift.DogecoinWidget.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sineshift.DogecoinWidget.Common.UI\Sineshift.DogecoinWidget.Common.UI.csproj">
       <Project>{898e0d50-ae0f-4279-89a7-e050ea11d5af}</Project>
       <Name>Sineshift.DogecoinWidget.Common.UI</Name>

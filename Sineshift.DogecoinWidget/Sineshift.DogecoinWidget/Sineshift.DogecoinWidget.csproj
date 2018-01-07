@@ -99,15 +99,15 @@
       <Project>{927ef5d8-ca3b-41f9-9bc9-afa5812503af}</Project>
       <Name>Sineshift.DogecoinWidget.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="Sineshift.DogecoinWidget.Common.UI\Sineshift.DogecoinWidget.Common.UI.csproj">
+    <ProjectReference Include="..\Sineshift.DogecoinWidget.Common.UI\Sineshift.DogecoinWidget.Common.UI.csproj">
       <Project>{898e0d50-ae0f-4279-89a7-e050ea11d5af}</Project>
       <Name>Sineshift.DogecoinWidget.Common.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="Sineshift.DogecoinWidget.Services\Sineshift.DogecoinWidget.Services.csproj">
+    <ProjectReference Include="..\Sineshift.DogecoinWidget.Services\Sineshift.DogecoinWidget.Services.csproj">
       <Project>{13467a52-4a7b-492d-bab7-f8e0cd917e2e}</Project>
       <Name>Sineshift.DogecoinWidget.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="Sineshift.DogecoinWidget.UI\Sineshift.DogecoinWidget.UI.csproj">
+    <ProjectReference Include="..\Sineshift.DogecoinWidget.UI\Sineshift.DogecoinWidget.UI.csproj">
       <Project>{ecda1177-982d-44f5-aa43-5736361dd628}</Project>
       <Name>Sineshift.DogecoinWidget.UI</Name>
     </ProjectReference>
