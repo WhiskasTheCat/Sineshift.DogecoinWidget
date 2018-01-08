@@ -3,10 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:cui="clr-namespace:Sineshift.DogecoinWidget.Common.UI;assembly=Sineshift.DogecoinWidget.Common.UI"
         xmlns:local="clr-namespace:Sineshift.DogecoinWidget"
+		WindowStyle="None"
+		WindowStartupLocation="Manual"
+		WindowState="Normal"
+		AllowsTransparency="True"
         mc:Ignorable="d"
         Title="Dogecoin Widget" Height="350" Width="525">
-    <Grid>
+
+	<Grid Background="{StaticResource Brush.Background.Primary}">
+		<cui:WindowMovingThumb Window="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+												   HorizontalAlignment="Stretch"
+												   VerticalAlignment="Stretch"/>
 		<ContentControl Name="mainRegion" />
 	</Grid>
 </Window>

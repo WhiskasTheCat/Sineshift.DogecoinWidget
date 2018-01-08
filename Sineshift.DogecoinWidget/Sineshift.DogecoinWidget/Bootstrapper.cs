@@ -13,7 +13,14 @@ namespace Sineshift.DogecoinWidget
 	{
 		public FrameworkElement Run()
 		{
-			return ServiceLocator.Current.Get<OverviewView>();
+			Logger.Current.Info("Running bootstrapper...");
+
+			ServiceLocator.Current.SetSingleton<ILogger>(Logger.Current);
+			var shell = ServiceLocator.Current.Get<ShellView>();
+
+			Logger.Current.Info("Bootstrapper done.");
+
+			return shell;
 		}
 	}
 }

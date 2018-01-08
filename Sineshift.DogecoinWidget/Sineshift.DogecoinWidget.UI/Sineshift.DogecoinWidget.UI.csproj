@@ -64,6 +64,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Shell\ShellView.xaml.cs">
+      <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\ShellViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -78,6 +82,10 @@
       <Project>{898e0d50-ae0f-4279-89a7-e050ea11d5af}</Project>
       <Name>Sineshift.DogecoinWidget.Common.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sineshift.DogecoinWidget.Common\Sineshift.DogecoinWidget.Common.csproj">
+      <Project>{927ef5d8-ca3b-41f9-9bc9-afa5812503af}</Project>
+      <Name>Sineshift.DogecoinWidget.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sineshift.DogecoinWidget.Services\Sineshift.DogecoinWidget.Services.csproj">
       <Project>{13467a52-4a7b-492d-bab7-f8e0cd917e2e}</Project>
       <Name>Sineshift.DogecoinWidget.Services</Name>
@@ -88,6 +96,29 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Themes\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\CommonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\Themes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shell\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Doge.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

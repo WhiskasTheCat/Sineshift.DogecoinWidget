@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bases\Singleton.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -66,6 +68,8 @@
     </Compile>
     <Compile Include="ServiceLocation\IServiceLocator.cs" />
     <Compile Include="ServiceLocation\ServiceLocator.cs" />
+    <Compile Include="Util\EnvironmentUtil.cs" />
+    <Compile Include="Util\ExceptionUtil.cs" />
     <Compile Include="Util\ReflectionUtil.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

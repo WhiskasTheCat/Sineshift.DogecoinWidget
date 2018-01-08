@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Sineshift.DogecoinWidget"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
-    </Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Sineshift.DogecoinWidget.Common.UI;component/Resources/Themes/Themes.xaml" />
+				<ResourceDictionary Source="/Sineshift.DogecoinWidget.UI;component/Resources/Themes/Themes.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
 </Application>
