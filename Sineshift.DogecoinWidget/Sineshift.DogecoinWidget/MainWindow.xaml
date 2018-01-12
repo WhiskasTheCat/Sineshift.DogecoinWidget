@@ -5,17 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:cui="clr-namespace:Sineshift.DogecoinWidget.Common.UI;assembly=Sineshift.DogecoinWidget.Common.UI"
         xmlns:local="clr-namespace:Sineshift.DogecoinWidget"
+		SnapsToDevicePixels="True"
 		WindowStyle="None"
 		WindowStartupLocation="Manual"
 		WindowState="Normal"
 		AllowsTransparency="True"
+		Background="Transparent"
         mc:Ignorable="d"
-        Title="Dogecoin Widget" Height="350" Width="525">
+        Title="Dogecoin Widget" Height="300" Width="300">
 
-	<Grid Background="{StaticResource Brush.Background.Primary}">
+	<Grid>
+		<!-- Trick to make rounded border also clip its content, because ClipToBounds ignores CornerRadius -->
+		<Grid.OpacityMask>
+			<VisualBrush Visual="{Binding ElementName=border}" />
+		</Grid.OpacityMask>
+
+		<Border Background="{StaticResource Brush.Background.Primary}"
+				CornerRadius="10"
+				Name="border" />
+
 		<cui:WindowMovingThumb Window="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-												   HorizontalAlignment="Stretch"
-												   VerticalAlignment="Stretch"/>
-		<ContentControl Name="mainRegion" />
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch" />
+
+
+
+		<ContentControl Name="mainRegion"/>
 	</Grid>
 </Window>

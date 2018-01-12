@@ -7,6 +7,44 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 	<Grid>
-		<ContentControl Content="{Binding CurrentView}" />
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		
+		<Grid Margin="5">
+			<TextBlock Text="Such Dogecoin Widget"
+						   Style="{StaticResource Style.TextBlock.Caption}"/>
+
+			<StackPanel Orientation="Horizontal"
+						HorizontalAlignment="Right">
+				<Button Style="{StaticResource Style.Button.Lookless}"
+						Width="16"
+						Height="16"
+						ToolTip="Very settings"
+						Margin="0,0,5,0">
+					<Image Source="{StaticResource Image.Settings}" />
+				</Button>
+				<Button Style="{StaticResource Style.Button.Lookless}"
+						Width="16"
+						Height="16"
+						ToolTip="So about"
+						Margin="0,0,5,0">
+					<Image Source="{StaticResource Image.About}" 
+						   Margin="1"/>
+				</Button>
+				<Button Style="{StaticResource Style.Button.Lookless}"
+						Width="16"
+						Height="16"
+						ToolTip="Much close"
+						Command="{Binding CloseApplicationCommand}">
+					<Image Source="{StaticResource Image.Close}"
+						   Margin="1"/>
+				</Button>
+			</StackPanel>
+		</Grid>
+		
+		<ContentControl Content="{Binding CurrentView}"
+						Grid.Row="1"/>
 	</Grid>
 </UserControl>

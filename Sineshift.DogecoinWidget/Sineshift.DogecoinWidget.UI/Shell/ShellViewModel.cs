@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Sineshift.DogecoinWidget.UI
 {
@@ -15,6 +17,13 @@ namespace Sineshift.DogecoinWidget.UI
 		public ShellViewModel()
 		{
 			currentView = ServiceLocator.Current.Get<OverviewView>();
+			CloseApplicationCommand = new RelayCommand(() => Application.Current.Shutdown());
+		}
+
+		public ICommand CloseApplicationCommand
+		{
+			get;
+			private set;
 		}
 
 		public object CurrentView

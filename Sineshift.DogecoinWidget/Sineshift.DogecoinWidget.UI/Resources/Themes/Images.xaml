@@ -4,4 +4,13 @@
 	<BitmapImage UriSource="../Images/Doge.png"
 				 x:Key="Image.Doge" />
 
+	<BitmapImage UriSource="../Images/Close.png"
+				 x:Key="Image.Close" />
+
+	<BitmapImage UriSource="../Images/Settings.png"
+				 x:Key="Image.Settings" />
+
+	<BitmapImage UriSource="../Images/About.png"
+				 x:Key="Image.About" />
+	
 </ResourceDictionary>

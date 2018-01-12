@@ -42,6 +42,12 @@ namespace Sineshift.DogecoinWidget.Common
 			WriteLog("Error", message);
 		}
 
+		public void Error(string message, Exception ex)
+		{
+			var exceptionText = ExceptionUtil.GetExceptionText(ex);
+			WriteLog("Error", $"{message}: {exceptionText}");
+		}
+
 		public void Info(string message)
 		{
 			WriteLog("Info", message);

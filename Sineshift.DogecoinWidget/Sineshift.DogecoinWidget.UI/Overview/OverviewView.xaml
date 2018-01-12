@@ -12,6 +12,22 @@
 			   Width="100"
 			   HorizontalAlignment="Left"
 			   VerticalAlignment="Bottom" />
-	
+
+		<StackPanel>
+			<TextBlock Text="{Binding CurrentMarketInfo.Rank, StringFormat='#{0}'}" />
+			<TextBlock Text="{Binding CurrentMarketInfo.PriceUSD, StringFormat='$ {0:0.00##}'}"
+					   Foreground="{StaticResource Brush.Dollar}"/>
+			<TextBlock Text="{Binding CurrentMarketInfo.PriceBTC, StringFormat='Ƀ {0:0.00000000}'}"
+					   Foreground="{StaticResource Brush.Bitcoin}"/>
+			<TextBlock Text="{Binding CurrentMarketInfo.PercentChange1H, StringFormat='{}{0:0.00} %'}" />
+			<TextBlock Text="{Binding CurrentMarketInfo.PercentChange24H, StringFormat='{}{0:0.00} %'}" />
+			<TextBlock Text="{Binding CurrentMarketInfo.PercentChange7D, StringFormat='{}{0:0.00} %'}" />
+			<TextBlock Text="{Binding CurrentMarketInfo.MarketCapUSD, StringFormat='$ {0:N0}'}"
+					   Foreground="{StaticResource Brush.Dollar}"/>
+			<TextBlock Text="{Binding CurrentMarketInfo.VolumeUSD, StringFormat='$ {0:N0}'}"
+					   Foreground="{StaticResource Brush.Dollar}"/>
+		</StackPanel>
+		
+
 	</Grid>
 </UserControl>

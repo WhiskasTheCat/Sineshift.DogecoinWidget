@@ -4,4 +4,13 @@
 	<SolidColorBrush x:Key="Brush.Background.Primary"
 					 Color="#f4efc8" />
 
+	<SolidColorBrush x:Key="Brush.Foreground.Primary"
+					 Color="#000000" />
+
+	<SolidColorBrush x:Key="Brush.Dollar"
+					 Color="#008000" />
+
+	<SolidColorBrush x:Key="Brush.Bitcoin"
+					 Color="#f8a138" />
+	
 </ResourceDictionary>
