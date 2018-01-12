@@ -24,6 +24,17 @@
 				CornerRadius="10"
 				Name="border" />
 
+		<Border Background="{StaticResource Brush.GlassGradient}"
+				CornerRadius="10"
+				Margin="1"/>
+
+		<Border Background="{StaticResource Brush.GlassBubble}"
+				CornerRadius="10"
+				Margin="1"
+				Height="32"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Top" />
+
 		<cui:WindowMovingThumb Window="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
 								HorizontalAlignment="Stretch"
 								VerticalAlignment="Stretch" />

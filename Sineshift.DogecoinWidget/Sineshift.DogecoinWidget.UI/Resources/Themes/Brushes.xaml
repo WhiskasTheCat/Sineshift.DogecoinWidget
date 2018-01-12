@@ -12,5 +12,24 @@
 
 	<SolidColorBrush x:Key="Brush.Bitcoin"
 					 Color="#f8a138" />
-	
+
+	<LinearGradientBrush x:Key="Brush.GlassGradient"
+						 StartPoint="0.5,0"
+						 EndPoint="0.5,1">
+		<GradientStop Offset="0"
+					  Color="#00FFFFFF" />
+		<GradientStop Offset="0.5"
+					  Color="#00FFFFFF" />
+		<GradientStop Offset="1"
+					  Color="#a0FFFFFF" />
+	</LinearGradientBrush>
+
+	<LinearGradientBrush x:Key="Brush.GlassBubble"
+						 StartPoint="0.5,0"
+						 EndPoint="0.5,1">
+		<GradientStop Offset="0"
+					  Color="#c0FFFFFF" />
+		<GradientStop Offset="1"
+					  Color="#00FFFFFF" />
+	</LinearGradientBrush>
 </ResourceDictionary>

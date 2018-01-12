@@ -43,8 +43,9 @@ namespace Sineshift.DogecoinWidget
 			var ex = e.ExceptionObject as Exception;
 			if (ex != null)
 			{
-				var text = ExceptionUtil.GetExceptionText(e.ExceptionObject as Exception);
+				var text = ExceptionUtil.GetExceptionText(ex);
 				Logger.Current.Error(text);
+				MessageBox.Show($"A critical error occured and the application will be closed now: {ex.Message}");
 			}
 		}
 
@@ -52,6 +53,7 @@ namespace Sineshift.DogecoinWidget
 		{
 			var text = ExceptionUtil.GetExceptionText(e.Exception);
 			Logger.Current.Error(text);
+			MessageBox.Show($"A critical error occured and the application will be closed now: {e.Exception.Message}");
 		}
 	}
 }

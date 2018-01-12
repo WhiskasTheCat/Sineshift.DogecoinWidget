@@ -11,6 +11,7 @@
 				<ResourceDictionary Source="/Sineshift.DogecoinWidget.UI;component/Resources/Themes/CommonStyles.xaml" />
 				<ResourceDictionary Source="/Sineshift.DogecoinWidget.UI;component/Resources/Themes/TextStyles.xaml" />
 				<ResourceDictionary Source="/Sineshift.DogecoinWidget.UI;component/Resources/Themes/ButtonStyles.xaml" />
+				<ResourceDictionary Source="/Sineshift.DogecoinWidget.UI;component/Resources/Themes/SimpleMovingChartStyles.xaml" />
 				<ResourceDictionary Source="/Sineshift.DogecoinWidget.Common.UI;component/Resources/Themes/Themes.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>

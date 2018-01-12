@@ -7,27 +7,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-		<Image Source="{StaticResource Image.Doge}"
-			   Stretch="Uniform"
-			   Width="100"
-			   HorizontalAlignment="Left"
-			   VerticalAlignment="Bottom" />
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		
 
 		<StackPanel>
-			<TextBlock Text="{Binding CurrentMarketInfo.Rank, StringFormat='#{0}'}" />
-			<TextBlock Text="{Binding CurrentMarketInfo.PriceUSD, StringFormat='$ {0:0.00##}'}"
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{Binding CurrentMarketInfo.Rank, StringFormat='#{0}'}" />
+				<TextBlock Text="{Binding CurrentMarketInfo.PriceUSD, StringFormat='${0:0.00##}'}"
 					   Foreground="{StaticResource Brush.Dollar}"/>
-			<TextBlock Text="{Binding CurrentMarketInfo.PriceBTC, StringFormat='Ƀ {0:0.00000000}'}"
+				<TextBlock Text="{Binding CurrentMarketInfo.PriceBTC, StringFormat='Ƀ {0:0.00000000}'}"
 					   Foreground="{StaticResource Brush.Bitcoin}"/>
-			<TextBlock Text="{Binding CurrentMarketInfo.PercentChange1H, StringFormat='{}{0:0.00} %'}" />
-			<TextBlock Text="{Binding CurrentMarketInfo.PercentChange24H, StringFormat='{}{0:0.00} %'}" />
-			<TextBlock Text="{Binding CurrentMarketInfo.PercentChange7D, StringFormat='{}{0:0.00} %'}" />
-			<TextBlock Text="{Binding CurrentMarketInfo.MarketCapUSD, StringFormat='$ {0:N0}'}"
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange1H, StringFormat='{}{0:0.00} %'}" />
+				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange24H, StringFormat='{}{0:0.00} %'}" />
+				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange7D, StringFormat='{}{0:0.00} %'}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{Binding CurrentMarketInfo.MarketCapUSD, StringFormat='$ {0:N0}'}"
 					   Foreground="{StaticResource Brush.Dollar}"/>
-			<TextBlock Text="{Binding CurrentMarketInfo.VolumeUSD, StringFormat='$ {0:N0}'}"
+				<TextBlock Text="{Binding CurrentMarketInfo.VolumeUSD, StringFormat='$ {0:N0}'}"
 					   Foreground="{StaticResource Brush.Dollar}"/>
+			</StackPanel>
 		</StackPanel>
+
+		<Grid Grid.Row="1">
+			<local:SimpleMovingChart ItemsSource="{Binding PricePairs}"
+									 MaxItemCount="{Binding MaxPricePairs}"
+									 HorizontalAlignment="Stretch"
+									 VerticalAlignment="Stretch"/>
+		</Grid>
 		
+		<Image Source="{StaticResource Image.Doge}"
+			   Grid.Row="2"
+			   Stretch="Uniform"
+			   Width="64"
+			   HorizontalAlignment="Left"
+			   VerticalAlignment="Bottom" />
 
 	</Grid>
 </UserControl>

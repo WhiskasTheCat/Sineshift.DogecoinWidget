@@ -12,5 +12,5 @@
 
 	<BitmapImage UriSource="../Images/About.png"
 				 x:Key="Image.About" />
-	
+
 </ResourceDictionary>
