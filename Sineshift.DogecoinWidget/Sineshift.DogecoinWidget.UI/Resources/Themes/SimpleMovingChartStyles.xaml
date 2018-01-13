@@ -7,9 +7,11 @@
 				Value="{StaticResource Brush.Dollar}" />
 		<Setter Property="BitcoinBrush"
 				Value="{StaticResource Brush.Bitcoin}" />
+		<Setter Property="VolumeBrush"
+				Value="{StaticResource Brush.Volume}" />
 		<Setter Property="LineStyle">
 			<Setter.Value>
-				<Style TargetType="{x:Type Polyline}">
+				<Style TargetType="{x:Type Shape}">
 					<Setter Property="StrokeThickness"
 							Value="2" />
 					<Setter Property="Stroke"

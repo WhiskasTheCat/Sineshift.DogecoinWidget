@@ -1,4 +1,5 @@
 ﻿using Sineshift.DogecoinWidget.Common;
+using Sineshift.DogecoinWidget.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,6 +55,22 @@ namespace Sineshift.DogecoinWidget.UI
 		}
 		#endregion
 
+		#region DP VolumeBrush
+		public Brush VolumeBrush
+		{
+			get { return (Brush)GetValue(VolumeBrushProperty); }
+			set { SetValue(VolumeBrushProperty, value); }
+		}
+
+		public static readonly DependencyProperty VolumeBrushProperty =
+			DependencyProperty.Register("VolumeBrush", typeof(Brush), typeof(SimpleMovingChart), new PropertyMetadata(default(Brush), (sender, e) => (sender as SimpleMovingChart).OnVolumeBrushChanged((Brush)e.OldValue, (Brush)e.NewValue)));
+
+		protected void OnVolumeBrushChanged(Brush oldValue, Brush newValue)
+		{
+
+		}
+		#endregion
+
 		#region DP MaxItemCount
 		public int MaxItemCount
 		{
@@ -69,8 +86,6 @@ namespace Sineshift.DogecoinWidget.UI
 			RedrawChart();
 		}
 		#endregion
-
-
 
 		#region DP LineStyle
 		public Style LineStyle
@@ -112,7 +127,7 @@ namespace Sineshift.DogecoinWidget.UI
 
 		private void RedrawChart()
 		{
-			if (canvasPart == null || ItemsSource == null)
+			if (canvasPart == null || ItemsSource == null || MaxItemCount == 0)
 			{
 				return;
 			}
@@ -126,6 +141,7 @@ namespace Sineshift.DogecoinWidget.UI
 
 			var btcPrices = pairs.Select(p => p.PriceBTC).ToList();
 			var usdPrices = pairs.Select(p => p.PriceUSD).ToList();
+			var volumes = pairs.Select(p => p.Volume).ToList();
 
 			var btcLine = GetLineFromPrices(btcPrices);
 			btcLine.Stroke = BitcoinBrush;
@@ -133,9 +149,13 @@ namespace Sineshift.DogecoinWidget.UI
 			var usdLine = GetLineFromPrices(usdPrices);
 			usdLine.Stroke = DollarBrush;
 
+			var volumeLines = GetVolumeLines(volumes);
+			volumeLines.ForEach(l => l.Stroke = VolumeBrush);
+
 			canvasPart.Children.Clear();
+			volumeLines.ForEach(l => canvasPart.Children.Add(l));
 			canvasPart.Children.Add(btcLine);
-			canvasPart.Children.Add(usdLine);
+			canvasPart.Children.Add(usdLine);	
 		}
 
 		private Polyline GetLineFromPrices(List<double> prices)
@@ -151,16 +171,49 @@ namespace Sineshift.DogecoinWidget.UI
 				Style = LineStyle
 			};
 
-			foreach(var price in prices)
+			for (int i = 0; i < prices.Count; ++i)
 			{
-				var x = startX + prices.IndexOf(price) * widthPerPrice;
+				var price = prices[i];
+				var x = startX + i * widthPerPrice;
 				var relativeY = (price - min) / span;
-				var y = canvasPart.ActualHeight * relativeY;
+				var y = canvasPart.ActualHeight * (1.0 - relativeY);
 
 				polyline.Points.Add(new Point(x, y));
 			}
 
 			return polyline;
+		}
+
+		private List<Line> GetVolumeLines(List<double> volumes)
+		{
+			var lines = new List<Line>();
+
+			var min = volumes.Min();
+			var max = volumes.Max();
+			var span = min.AlmostEquals(max) ? max : max - min;
+			var widthPerPrice = canvasPart.ActualWidth / MaxItemCount;
+			var startX = canvasPart.ActualWidth - volumes.Count * widthPerPrice;
+
+			for (int i = 0; i < volumes.Count; ++i)
+			{
+				var volume = volumes[i];
+				var x = startX + i * widthPerPrice;
+				var relativeY = (volume - min) / span;
+				var y = canvasPart.ActualHeight * (1.0 - relativeY);
+
+				var line = new Line()
+				{
+					Style = LineStyle,
+					X1 = x,
+					X2 = x,
+					Y1 = y,
+					Y2 = canvasPart.ActualHeight
+				};
+
+				lines.Add(line);
+			}
+
+			return lines;
 		}
 	}
 }

@@ -13,6 +13,9 @@
 	<SolidColorBrush x:Key="Brush.Bitcoin"
 					 Color="#f8a138" />
 
+	<SolidColorBrush x:Key="Brush.Volume"
+					 Color="#a0a0a0" />
+	
 	<LinearGradientBrush x:Key="Brush.GlassGradient"
 						 StartPoint="0.5,0"
 						 EndPoint="0.5,1">

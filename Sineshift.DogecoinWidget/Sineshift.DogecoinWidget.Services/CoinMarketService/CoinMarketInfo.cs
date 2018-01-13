@@ -20,6 +20,18 @@ namespace Sineshift.DogecoinWidget.Services
 			internal set;
 		}
 
+		public IReadOnlyList<BitcoinDollarPair> PriceHistory1H
+		{
+			get;
+			internal set;
+		}
+
+		public IReadOnlyList<BitcoinDollarPair> PriceHistory1D
+		{
+			get;
+			internal set;
+		}
+
 		public double PercentChange1H
 		{
 			get;

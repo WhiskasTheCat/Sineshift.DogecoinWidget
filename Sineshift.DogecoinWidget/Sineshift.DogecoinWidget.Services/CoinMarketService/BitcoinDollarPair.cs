@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sineshift.DogecoinWidget.UI
+namespace Sineshift.DogecoinWidget.Services
 {
     public class BitcoinDollarPair
     {
@@ -20,6 +20,13 @@ namespace Sineshift.DogecoinWidget.UI
 			get;
 			set;
 		}
+
+		public double Volume
+		{
+			get;
+			set;
+		}
+
 		public override int GetHashCode()
 		{
 			return HashUtil.CombineHashes(PriceBTC.GetHashCode(), PriceUSD.GetHashCode());

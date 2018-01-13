@@ -9,27 +9,32 @@ namespace Sineshift.DogecoinWidget.Common
 {
 	public class Logger : Singleton<Logger, ILogger>, ILogger
 	{
-		private readonly string path;
 		private readonly static object locker = new object();
 
 		private Logger()
 		{
-			path = EnvironmentUtil.GetAppDataPath("Log.txt");
+			LogPath = EnvironmentUtil.GetAppDataPath("Log.txt");
 
 			// We delete the log if it gets too big
 			try
 			{
 				var maxLogSize = 1024 * 1024 * 10; // 10 MB
 
-				if (File.Exists(path) && new FileInfo(path).Length > maxLogSize)
+				if (File.Exists(LogPath) && new FileInfo(LogPath).Length > maxLogSize)
 				{
-					File.Delete(path);
+					File.Delete(LogPath);
 				}
 			}
 			catch (Exception)
 			{
 
 			}
+		}
+
+		public string LogPath
+		{
+			get;
+			private set;
 		}
 
 		public void Debug(string message)
@@ -69,7 +74,7 @@ namespace Sineshift.DogecoinWidget.Common
 
 				if (category != "Debug")
 				{
-					File.AppendAllText(path, log);
+					File.AppendAllText(LogPath, log);
 				}
 			}
 		}

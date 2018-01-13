@@ -35,11 +35,13 @@
 			</StackPanel>
 		</StackPanel>
 
-		<Grid Grid.Row="1">
-			<local:SimpleMovingChart ItemsSource="{Binding PricePairs}"
-									 MaxItemCount="{Binding MaxPricePairs}"
+		<Grid Grid.Row="1"
+			  IsHitTestVisible="False">
+			<local:SimpleMovingChart ItemsSource="{Binding CurrentMarketInfo.PriceHistory1H}"
+									 MaxItemCount="{Binding CurrentMarketInfo.PriceHistory1H.Count}"
+									 Height="50"
 									 HorizontalAlignment="Stretch"
-									 VerticalAlignment="Stretch"/>
+									 VerticalAlignment="Center"/>
 		</Grid>
 		
 		<Image Source="{StaticResource Image.Doge}"

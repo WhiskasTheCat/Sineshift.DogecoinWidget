@@ -8,6 +8,8 @@ namespace Sineshift.DogecoinWidget.Common
 {
 	public interface ILogger
 	{
+		string LogPath { get; }
+
 		void Info(string message);
 		void Debug(string message);
 		void Warning(string message);

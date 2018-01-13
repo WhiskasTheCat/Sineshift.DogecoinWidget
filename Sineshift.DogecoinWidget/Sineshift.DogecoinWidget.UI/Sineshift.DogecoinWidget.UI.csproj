@@ -47,7 +47,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\BitcoinDollarPair.cs" />
     <Compile Include="Controls\SimpleMovingChart.cs" />
     <Compile Include="Overview\OverviewView.xaml.cs">
       <DependentUpon>OverviewView.xaml</DependentUpon>
