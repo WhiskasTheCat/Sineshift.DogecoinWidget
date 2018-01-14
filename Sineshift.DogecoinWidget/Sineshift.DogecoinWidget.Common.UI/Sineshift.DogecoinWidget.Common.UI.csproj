@@ -50,6 +50,7 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Controls\WindowMovingThumb.cs" />
     <Compile Include="Converters\BoolToValueConverter.cs" />
+    <Compile Include="Converters\NumberSignConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

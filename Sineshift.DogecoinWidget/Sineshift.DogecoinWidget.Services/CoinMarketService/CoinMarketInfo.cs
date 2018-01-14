@@ -44,7 +44,7 @@ namespace Sineshift.DogecoinWidget.Services
 			internal set;
 		}
 
-		public double VolumeUSD
+		public double Volume24HUSD
 		{
 			get;
 			internal set;

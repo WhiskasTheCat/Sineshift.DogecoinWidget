@@ -16,6 +16,18 @@
 
 	<SolidColorBrush x:Key="Brush.Volume"
 					 Color="#d5b457" />
+
+	<SolidColorBrush x:Key="Brush.Bull"
+					 Color="#00a000" />
+
+	<SolidColorBrush x:Key="Brush.Bear"
+					 Color="#c00000" />
+
+	<SolidColorBrush x:Key="Brush.Selected.Background"
+					 Color="#a17c34" />
+
+	<SolidColorBrush x:Key="Brush.Selected.Foreground"
+					 Color="#ffffff" />
 	
 	<LinearGradientBrush x:Key="Brush.GlassGradient"
 						 StartPoint="0.5,0"

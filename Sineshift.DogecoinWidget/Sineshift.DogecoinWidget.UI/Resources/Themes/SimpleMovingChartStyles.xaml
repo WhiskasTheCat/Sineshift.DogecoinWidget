@@ -9,6 +9,8 @@
 				Value="{StaticResource Brush.Bitcoin}" />
 		<Setter Property="VolumeBrush"
 				Value="{StaticResource Brush.Volume}" />
+		<Setter Property="IsHitTestVisible"
+				Value="False" />
 		<Setter Property="LineStyle">
 			<Setter.Value>
 				<Style TargetType="{x:Type Shape}">
@@ -32,6 +34,7 @@
 				<ControlTemplate TargetType="{x:Type local:SimpleMovingChart}">
 					<Grid>
 						<Canvas Name="PART_Canvas"
+								ClipToBounds="True"
 								Margin="1"/>
 					</Grid>
 				</ControlTemplate>

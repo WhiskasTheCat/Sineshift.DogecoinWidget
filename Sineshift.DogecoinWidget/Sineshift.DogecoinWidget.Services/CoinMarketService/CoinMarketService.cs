@@ -36,7 +36,7 @@ namespace Sineshift.DogecoinWidget.Services
 					PercentChange24H = double.Parse(currency.PercentChange24h, usCulture),
 					PercentChange7D = double.Parse(currency.PercentChange7d, usCulture),
 					MarketCapUSD = double.Parse(currency.MarketCapUsd, usCulture),
-					VolumeUSD = double.Parse(currency.Volume24hUsd, usCulture),
+					Volume24HUSD = double.Parse(currency.Volume24hUsd, usCulture),
 					Rank = int.Parse(currency.Rank)
 				};
 			});

@@ -21,7 +21,6 @@ namespace Sineshift.DogecoinWidget.UI
 		IReadOnlyList<BitcoinDollarPair> prices1D;
 		IReadOnlyList<BitcoinDollarPair> prices7D;
 		IReadOnlyList<BitcoinDollarPair> prices1M;
-
 		bool isDataLoaded;
 
 		public OverviewViewModel(CoinMarketService marketService)
@@ -83,15 +82,17 @@ namespace Sineshift.DogecoinWidget.UI
 			try
 			{
 				var taskMarket = marketService.GetCurrentMarketInfo();
-				var task1H = marketService.GetPrices1H();
+				// TO DO: 1H chart deactivated for now, seems rather useless because of huge fluctuations
+				// Instead, possibly add live chart data from market cap that builds up over time like it was before
+				//var task1H = marketService.GetPrices1H();
 				var task1D = marketService.GetPrices1D();
 				var task7D = marketService.GetPrices7D();
 				var task1M = marketService.GetPrices1M();
 
-				await Task.WhenAll(taskMarket, task1H, task1D, task7D, task1M);
+				await Task.WhenAll(taskMarket, task1D, task7D, task1M);
 
 				CurrentMarketInfo = taskMarket.Result;
-				Prices1H = task1H.Result;
+				//Prices1H = task1H.Result;
 				Prices1D = task1D.Result;
 				Prices7D = task7D.Result;
 				Prices1M = task1M.Result;

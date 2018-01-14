@@ -13,7 +13,7 @@
 		AllowsTransparency="True"
 		Background="Transparent"
         mc:Ignorable="d"
-        Title="Dogecoin Widget" Height="300" Width="300">
+        Title="Dogecoin Widget" Height="350" Width="350">
 
 	<Grid>
 		<!-- Trick to make rounded border also clip its content, because ClipToBounds ignores CornerRadius -->
