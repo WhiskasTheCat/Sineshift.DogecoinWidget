@@ -13,4 +13,7 @@
 	<BitmapImage UriSource="../Images/About.png"
 				 x:Key="Image.About" />
 
+	<BitmapImage UriSource="../Images/Dogecoin.png"
+				 x:Key="Image.Dogecoin" />
+	
 </ResourceDictionary>

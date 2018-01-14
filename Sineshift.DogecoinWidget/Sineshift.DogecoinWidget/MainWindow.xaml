@@ -6,6 +6,7 @@
 		xmlns:cui="clr-namespace:Sineshift.DogecoinWidget.Common.UI;assembly=Sineshift.DogecoinWidget.Common.UI"
         xmlns:local="clr-namespace:Sineshift.DogecoinWidget"
 		SnapsToDevicePixels="True"
+		UseLayoutRounding="False"
 		WindowStyle="None"
 		WindowStartupLocation="Manual"
 		WindowState="Normal"

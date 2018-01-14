@@ -20,7 +20,7 @@ namespace Sineshift.DogecoinWidget.UI
 
 		public SimpleMovingChart()
 		{
-			
+			this.Loaded += OnLoaded;
 		}
 
 		#region DP DollarBrush
@@ -103,7 +103,10 @@ namespace Sineshift.DogecoinWidget.UI
 		}
 		#endregion
 
-
+		private void OnLoaded(object sender, RoutedEventArgs e)
+		{
+			RedrawChart();
+		}
 
 		public override void OnApplyTemplate()
 		{
@@ -150,7 +153,12 @@ namespace Sineshift.DogecoinWidget.UI
 			usdLine.Stroke = DollarBrush;
 
 			var volumeLines = GetVolumeLines(volumes);
-			volumeLines.ForEach(l => l.Stroke = VolumeBrush);
+			volumeLines.ForEach(l =>
+			{
+				l.Fill = VolumeBrush;
+				l.Stroke = Brushes.Transparent;
+				l.StrokeThickness = 0;
+			});
 
 			canvasPart.Children.Clear();
 			volumeLines.ForEach(l => canvasPart.Children.Add(l));
@@ -184,14 +192,15 @@ namespace Sineshift.DogecoinWidget.UI
 			return polyline;
 		}
 
-		private List<Line> GetVolumeLines(List<double> volumes)
+		private List<Shape> GetVolumeLines(List<double> volumes)
 		{
-			var lines = new List<Line>();
+			var lines = new List<Shape>();
 
 			var min = volumes.Min();
 			var max = volumes.Max();
 			var span = min.AlmostEquals(max) ? max : max - min;
 			var widthPerPrice = canvasPart.ActualWidth / MaxItemCount;
+			var halfWidth = widthPerPrice / 2.0;
 			var startX = canvasPart.ActualWidth - volumes.Count * widthPerPrice;
 
 			for (int i = 0; i < volumes.Count; ++i)
@@ -200,16 +209,16 @@ namespace Sineshift.DogecoinWidget.UI
 				var x = startX + i * widthPerPrice;
 				var relativeY = (volume - min) / span;
 				var y = canvasPart.ActualHeight * (1.0 - relativeY);
+				var height = canvasPart.ActualHeight - y;
 
-				var line = new Line()
+				var line = new Rectangle()
 				{
 					Style = LineStyle,
-					X1 = x,
-					X2 = x,
-					Y1 = y,
-					Y2 = canvasPart.ActualHeight
+					Height = height > 1.0 ? height : 1.0,
+					Width = widthPerPrice
 				};
-
+				Canvas.SetTop(line, y);
+				Canvas.SetLeft(line, x - halfWidth);
 				lines.Add(line);
 			}
 

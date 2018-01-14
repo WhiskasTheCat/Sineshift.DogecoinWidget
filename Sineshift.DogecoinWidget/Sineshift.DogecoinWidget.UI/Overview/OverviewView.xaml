@@ -4,15 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Sineshift.DogecoinWidget.UI"
+			 xmlns:cui="clr-namespace:Sineshift.DogecoinWidget.Common.UI;assembly=Sineshift.DogecoinWidget.Common.UI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-		
+
 
 		<StackPanel>
 			<StackPanel Orientation="Horizontal">
@@ -36,14 +37,76 @@
 		</StackPanel>
 
 		<Grid Grid.Row="1"
-			  IsHitTestVisible="False">
-			<local:SimpleMovingChart ItemsSource="{Binding CurrentMarketInfo.PriceHistory1H}"
-									 MaxItemCount="{Binding CurrentMarketInfo.PriceHistory1H.Count}"
-									 Height="50"
-									 HorizontalAlignment="Stretch"
-									 VerticalAlignment="Center"/>
+			  Visibility="{Binding IsDataLoaded, Converter={StaticResource Converter.BoolToVisibility}}">
+			<TabControl Height="100"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Center">
+				<TabItem Header="1 Hour"
+						 VerticalContentAlignment="Stretch"
+						 HorizontalContentAlignment="Stretch">
+					<local:SimpleMovingChart ItemsSource="{Binding Prices1H}"
+									 MaxItemCount="{Binding Prices1H.Count}" 
+											 />
+				</TabItem>
+				<TabItem Header="1 Day"
+						 VerticalContentAlignment="Stretch"
+						 HorizontalContentAlignment="Stretch">
+					<local:SimpleMovingChart ItemsSource="{Binding Prices1D}"
+									 MaxItemCount="{Binding Prices1D.Count}" 
+											 />
+				</TabItem>
+				<TabItem Header="7 Days"
+						 VerticalContentAlignment="Stretch"
+						 HorizontalContentAlignment="Stretch">
+					<local:SimpleMovingChart ItemsSource="{Binding Prices7D}"
+									 MaxItemCount="{Binding Prices7D.Count}" 
+											 />
+				</TabItem>
+				<TabItem Header="1 Month"
+						 VerticalContentAlignment="Stretch"
+						 HorizontalContentAlignment="Stretch">
+					<local:SimpleMovingChart ItemsSource="{Binding Prices1M}"
+									 MaxItemCount="{Binding Prices1M.Count}" 
+											 />
+				</TabItem>
+			</TabControl>
 		</Grid>
-		
+
+		<Grid Grid.Row="1"
+			  Visibility="{Binding IsDataLoaded, Converter={StaticResource Converter.BoolToVisibility.Reverse}}"
+			  VerticalAlignment="Center"
+			  HorizontalAlignment="Center"
+			  IsHitTestVisible="False">
+			<StackPanel Orientation="Horizontal">
+				<Image Source="{StaticResource Image.Dogecoin}"
+					   Height="24"
+					   RenderTransformOrigin="0.5, 0.5"
+					   Margin="0,0,10,0">
+					<Image.RenderTransform>
+						<RotateTransform x:Name="loadingRotation" />
+					</Image.RenderTransform>
+					<Image.Triggers>
+						<EventTrigger RoutedEvent="Loaded">
+							<EventTrigger.Actions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="loadingRotation"
+														 Storyboard.TargetProperty="Angle"
+														 From="0"
+														 To="360"
+														 Duration="0:0:1"
+														 RepeatBehavior="Forever" />
+									</Storyboard>
+								</BeginStoryboard>
+							</EventTrigger.Actions>
+						</EventTrigger>
+					</Image.Triggers>
+				</Image>
+				<TextBlock Text="Loading much data..."
+						   VerticalAlignment="Center" />
+			</StackPanel>
+		</Grid>
+
 		<Image Source="{StaticResource Image.Doge}"
 			   Grid.Row="2"
 			   Stretch="Uniform"

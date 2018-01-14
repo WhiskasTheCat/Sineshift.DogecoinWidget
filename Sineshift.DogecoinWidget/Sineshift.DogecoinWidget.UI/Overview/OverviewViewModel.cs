@@ -17,6 +17,12 @@ namespace Sineshift.DogecoinWidget.UI
 		readonly CoinMarketService marketService;
 		readonly DispatcherTimer timer;
 		CoinMarketInfo currentMarketInfo;
+		IReadOnlyList<BitcoinDollarPair> prices1H;
+		IReadOnlyList<BitcoinDollarPair> prices1D;
+		IReadOnlyList<BitcoinDollarPair> prices7D;
+		IReadOnlyList<BitcoinDollarPair> prices1M;
+
+		bool isDataLoaded;
 
 		public OverviewViewModel(CoinMarketService marketService)
 		{
@@ -29,6 +35,36 @@ namespace Sineshift.DogecoinWidget.UI
 			timer.Start();
 
 			UpdateMarketInfo();
+		}
+
+		public bool IsDataLoaded
+		{
+			get { return isDataLoaded; }
+			private set { isDataLoaded = value; RaisePropertyChanged(); }
+		}
+
+		public IReadOnlyList<BitcoinDollarPair> Prices1H
+		{
+			get { return prices1H; }
+			private set { prices1H = value; RaisePropertyChanged(); }
+		}
+
+		public IReadOnlyList<BitcoinDollarPair> Prices1D
+		{
+			get { return prices1D; }
+			private set { prices1D = value; RaisePropertyChanged(); }
+		}
+
+		public IReadOnlyList<BitcoinDollarPair> Prices7D
+		{
+			get { return prices7D; }
+			private set { prices7D = value; RaisePropertyChanged(); }
+		}
+
+		public IReadOnlyList<BitcoinDollarPair> Prices1M
+		{
+			get { return prices1M; }
+			private set { prices1M = value; RaisePropertyChanged(); }
 		}
 
 		public CoinMarketInfo CurrentMarketInfo
@@ -46,8 +82,21 @@ namespace Sineshift.DogecoinWidget.UI
 		{
 			try
 			{
-				CurrentMarketInfo = await marketService.GetCurrentMarketInfo();
+				var taskMarket = marketService.GetCurrentMarketInfo();
+				var task1H = marketService.GetPrices1H();
+				var task1D = marketService.GetPrices1D();
+				var task7D = marketService.GetPrices7D();
+				var task1M = marketService.GetPrices1M();
 
+				await Task.WhenAll(taskMarket, task1H, task1D, task7D, task1M);
+
+				CurrentMarketInfo = taskMarket.Result;
+				Prices1H = task1H.Result;
+				Prices1D = task1D.Result;
+				Prices7D = task7D.Result;
+				Prices1M = task1M.Result;
+
+				IsDataLoaded = CurrentMarketInfo != null;
 				Logger.Current.Debug($"PriceInfo: BTC = {CurrentMarketInfo.PriceBTC}, USD = {CurrentMarketInfo.PriceUSD}");
 			}
 			catch(Exception ex)

@@ -8,6 +8,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type local:WindowMovingThumb}">
 					<Grid Background="{TemplateBinding Background}"
+						  Cursor="SizeAll"
 						  HorizontalAlignment="Stretch"
 						  VerticalAlignment="Stretch"/>
 				</ControlTemplate>
