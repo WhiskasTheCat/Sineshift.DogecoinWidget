@@ -12,23 +12,28 @@ namespace Sineshift.DogecoinWidget.UI
 {
 	public class ShellViewModel : ObservableObject
 	{
-		object currentView;
+		Navigator navigator;
 
-		public ShellViewModel()
+		public ShellViewModel(Navigator navigator)
 		{
-			currentView = ServiceLocator.Current.Get<OverviewView>();
+			this.navigator = navigator;
+
+			navigator.Navigate<OverviewView>();
+	
 			CloseApplicationCommand = new RelayCommand(() => Application.Current.Shutdown());
+			ShowAboutCommand = new RelayCommand(() => navigator.Navigate<AboutView>());
+		}
+
+		public ICommand ShowAboutCommand
+		{
+			get;
+			private set;
 		}
 
 		public ICommand CloseApplicationCommand
 		{
 			get;
 			private set;
-		}
-
-		public object CurrentView
-		{
-			get { return currentView; }
 		}
 	}
 }

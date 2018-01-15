@@ -9,19 +9,28 @@
 				Value="14" />
 		<Setter Property="Foreground"
 				Value="{StaticResource Brush.Foreground.Primary}" />
-		<Setter Property="IsHitTestVisible"
-				Value="False" />
 	</Style>
 
 	<Style TargetType="{x:Type TextBlock}"
 		   BasedOn="{StaticResource {x:Type TextBlock}}"
-		   x:Key="Style.TextBlock.Caption">
+		   x:Key="Style.TextBlock.WindowCaption">
 		<Setter Property="FontWeight"
 				Value="Bold" />
 		<Setter Property="FontSize"
-				Value="12" />
-		<!--<Setter Property="TextOptions.TextFormattingMode"
-				Value="Display" />-->
+				Value="11" />
+	</Style>
+
+	<Style TargetType="{x:Type TextBlock}"
+		   BasedOn="{StaticResource {x:Type TextBlock}}"
+		   x:Key="Style.TextBlock.Label">
+		
+	</Style>
+	
+	<Style TargetType="{x:Type TextBlock}"
+		   BasedOn="{StaticResource {x:Type TextBlock}}"
+		   x:Key="Style.TextBlock.Caption">
+		<Setter Property="FontSize"
+				Value="16" />
 	</Style>
 	
 </ResourceDictionary>

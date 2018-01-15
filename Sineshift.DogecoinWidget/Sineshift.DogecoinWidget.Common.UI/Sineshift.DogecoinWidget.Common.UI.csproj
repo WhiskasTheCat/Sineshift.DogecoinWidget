@@ -51,6 +51,11 @@
     <Compile Include="Controls\WindowMovingThumb.cs" />
     <Compile Include="Converters\BoolToValueConverter.cs" />
     <Compile Include="Converters\NumberSignConverter.cs" />
+    <Compile Include="Navigation\INavigationObserver.cs" />
+    <Compile Include="Navigation\INavigationTarget.cs" />
+    <Compile Include="Navigation\NavigatedEventArgs.cs" />
+    <Compile Include="Navigation\NavigationType.cs" />
+    <Compile Include="Navigation\Navigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,6 +88,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sineshift.DogecoinWidget.Common\Sineshift.DogecoinWidget.Common.csproj">
+      <Project>{927ef5d8-ca3b-41f9-9bc9-afa5812503af}</Project>
+      <Name>Sineshift.DogecoinWidget.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

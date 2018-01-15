@@ -47,6 +47,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="About\AboutViewModel.cs" />
+    <Compile Include="Behaviors\TabControlExtensions.cs" />
     <Compile Include="Controls\SimpleMovingChart.cs" />
     <Compile Include="Overview\OverviewView.xaml.cs">
       <DependentUpon>OverviewView.xaml</DependentUpon>
@@ -94,6 +99,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="About\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Overview\OverviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Themes\TextStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\ToolTipStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

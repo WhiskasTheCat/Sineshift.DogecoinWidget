@@ -26,5 +26,29 @@ namespace Sineshift.DogecoinWidget.Common
 
 			return exceptionText.ToString();
 		}
+
+		public static void IgnoreException(Action action)
+		{
+			try
+			{
+				action();
+			}
+			catch
+			{
+
+			}
+		}
+
+		public static T IgnoreException<T>(Func<T> fn)
+		{
+			try
+			{
+				return fn();
+			}
+			catch
+			{
+				return default(T);
+			}
+		}
 	}
 }

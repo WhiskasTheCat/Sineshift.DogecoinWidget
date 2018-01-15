@@ -12,7 +12,7 @@ using System.Windows.Threading;
 
 namespace Sineshift.DogecoinWidget.UI
 {
-	public class OverviewViewModel : ObservableObject
+	public class OverviewViewModel : ObservableObject, INavigationObserver
 	{
 		readonly CoinMarketService marketService;
 		readonly DispatcherTimer timer;
@@ -26,12 +26,10 @@ namespace Sineshift.DogecoinWidget.UI
 		public OverviewViewModel(CoinMarketService marketService)
 		{
 			this.marketService = marketService;
-			System.Diagnostics.Debug.WriteLine(DateTime.Now.ToEpochTime());
 
 			timer = new DispatcherTimer();
 			timer.Interval = TimeSpan.FromSeconds(60);
 			timer.Tick += OnTick;
-			timer.Start();
 
 			UpdateMarketInfo();
 		}
@@ -72,6 +70,16 @@ namespace Sineshift.DogecoinWidget.UI
 			private set { currentMarketInfo = value; RaisePropertyChanged(); }
 		}
 
+		public void NavigatedFrom()
+		{
+			timer.Stop();
+		}
+
+		public void NavigatedTo(object parameter)
+		{
+			timer.Start();
+		}
+
 		private void OnTick(object sender, EventArgs e)
 		{
 			UpdateMarketInfo();
@@ -85,6 +93,7 @@ namespace Sineshift.DogecoinWidget.UI
 				// TO DO: 1H chart deactivated for now, seems rather useless because of huge fluctuations
 				// Instead, possibly add live chart data from market cap that builds up over time like it was before
 				//var task1H = marketService.GetPrices1H();
+				
 				var task1D = marketService.GetPrices1D();
 				var task7D = marketService.GetPrices7D();
 				var task1M = marketService.GetPrices1M();

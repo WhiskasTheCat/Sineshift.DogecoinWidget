@@ -1,9 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+	<!-- f4efc8 -->
 	<SolidColorBrush x:Key="Brush.Background.Primary"
-					 Color="#f4efc8" />
+					 Color="#f6eacc" />
 
+	<SolidColorBrush x:Key="Brush.Border.Primary"
+					 Color="#a17c34" />
+	
 	<SolidColorBrush x:Key="Brush.Foreground.Primary"
 					 Color="#000000" />
 
@@ -14,20 +18,39 @@
 	<SolidColorBrush x:Key="Brush.Bitcoin"
 					 Color="#e88108" />
 
+	<SolidColorBrush x:Key="Brush.MarketCap"
+					 Color="#0000ff" />
+	
 	<SolidColorBrush x:Key="Brush.Volume"
 					 Color="#d5b457" />
 
+	<SolidColorBrush x:Key="Brush.Rank"
+					 Color="#ff00ff" />
+	
+	<!-- Text needs to be a bit darker because its harder to read than the volume bars -->
+	<SolidColorBrush x:Key="Brush.Volume.Text"
+					 Color="#c09630" />
+	
 	<SolidColorBrush x:Key="Brush.Bull"
-					 Color="#00a000" />
+					 Color="#00b000" />
 
 	<SolidColorBrush x:Key="Brush.Bear"
-					 Color="#c00000" />
+					 Color="#b00000" />
 
-	<SolidColorBrush x:Key="Brush.Selected.Background"
+	<SolidColorBrush x:Key="Brush.Tab.Background"
+					 Color="#40a17c34" />
+
+	<SolidColorBrush x:Key="Brush.Tab.Foreground"
+					 Color="#ffffff" />
+	
+	<SolidColorBrush x:Key="Brush.Tab.Selected.Background"
 					 Color="#a17c34" />
 
-	<SolidColorBrush x:Key="Brush.Selected.Foreground"
+	<SolidColorBrush x:Key="Brush.Tab.Selected.Foreground"
 					 Color="#ffffff" />
+
+	<SolidColorBrush x:Key="Brush.ToolTip.Background"
+					 Color="#f8f3e8" />
 	
 	<LinearGradientBrush x:Key="Brush.GlassGradient"
 						 StartPoint="0.5,0"

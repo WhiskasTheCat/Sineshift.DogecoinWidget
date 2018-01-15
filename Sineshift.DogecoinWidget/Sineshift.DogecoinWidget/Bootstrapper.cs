@@ -1,4 +1,5 @@
 ﻿using Sineshift.DogecoinWidget.Common;
+using Sineshift.DogecoinWidget.Common.UI;
 using Sineshift.DogecoinWidget.Services;
 using Sineshift.DogecoinWidget.UI;
 using System;
@@ -26,8 +27,10 @@ namespace Sineshift.DogecoinWidget
 			Application.Current.DispatcherUnhandledException += OnDispatcherException;
 			AppDomain.CurrentDomain.UnhandledException += OnException;
 
-			ServiceLocator.Current.SetSingleton<ILogger>(Logger.Current);
-			ServiceLocator.Current.SetSingleton<CoinMarketService>();
+			ServiceLocator.Current
+				.SetSingleton<ILogger>(Logger.Current)
+				.SetSingleton<CoinMarketService>()
+				.SetSingleton<Navigator>();
 
 			Logger.Current.Info("Creating shell view...");
 
@@ -41,19 +44,23 @@ namespace Sineshift.DogecoinWidget
 		private void OnException(object sender, UnhandledExceptionEventArgs e)
 		{
 			var ex = e.ExceptionObject as Exception;
-			if (ex != null)
+			if (ex == null)
 			{
-				var text = ExceptionUtil.GetExceptionText(ex);
-				Logger.Current.Error(text);
-				MessageBox.Show($"A critical error occured and the application will be closed now: {ex.Message}");
+				return;
 			}
+
+			var text = ExceptionUtil.GetExceptionText(ex);
+			Logger.Current.Error(text);
+			ExceptionUtil.IgnoreException(() => MessageBox.Show($"A critical error occured and the application will be closed now: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error));
+			ExceptionUtil.IgnoreException(() => Application.Current.Shutdown(1));
 		}
 
 		private void OnDispatcherException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
 		{
 			var text = ExceptionUtil.GetExceptionText(e.Exception);
 			Logger.Current.Error(text);
-			MessageBox.Show($"A critical error occured and the application will be closed now: {e.Exception.Message}");
+			ExceptionUtil.IgnoreException(() => MessageBox.Show($"A critical error occured and the application will be closed now: {e.Exception.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error));
+			ExceptionUtil.IgnoreException(() => Application.Current.Shutdown(1));
 		}
 	}
 }

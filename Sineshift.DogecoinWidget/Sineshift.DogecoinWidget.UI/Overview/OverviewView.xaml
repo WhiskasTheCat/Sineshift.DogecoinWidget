@@ -20,7 +20,7 @@
 		</Grid.RowDefinitions>
 
 
-		<Grid Margin="10"
+		<Grid Margin="10,10,10,5"
 			  Visibility="{Binding IsDataLoaded, Converter={StaticResource Converter.BoolToVisibility}}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
@@ -37,60 +37,74 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="5" />
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="5" />
 			</Grid.RowDefinitions>
 
+			<Grid HorizontalAlignment="Stretch"
+				  Name="captionWidthReference"
+				  Grid.ColumnSpan="2"/>
+			
 			<TextBlock Text="Rank: " 
+					   Style="{StaticResource Style.TextBlock.Label}"
 					    Grid.Row="0"/>
 
 			<StackPanel Orientation="Horizontal"
 						Grid.Column="2"
 						 Grid.Row="0">
-				<TextBlock Text="{Binding CurrentMarketInfo.Rank, StringFormat='#{0}'}" />
+				<TextBlock Text="{Binding CurrentMarketInfo.Rank, StringFormat='#{0}'}"
+						   Foreground="{StaticResource Brush.Rank}"
+						   ToolTip="Rank among other coins according to market cap"/>
 			</StackPanel>
 
 			<TextBlock Text="Price: " 
+					   Style="{StaticResource Style.TextBlock.Label}"
 					    Grid.Row="2"/>
 
 			<StackPanel Orientation="Horizontal"
 						Grid.Column="2"
 						 Grid.Row="2">
 				<TextBlock Text="{Binding CurrentMarketInfo.PriceUSD, StringFormat='$ {0:0.0000##}'}"
+						   ToolTip="Price of 1 Dogecoin in USD"
 							Foreground="{StaticResource Brush.Dollar}"/>
 				<TextBlock Text=" / " />
 				<TextBlock Text="{Binding CurrentMarketInfo.PriceBTC, StringFormat='Ƀ {0:0.00000000}'}"
+						   ToolTip="Price of 1 Dogecoin in Bitcoin"
 							Foreground="{StaticResource Brush.Bitcoin}"/>
 			</StackPanel>
 
 			<TextBlock Text="Trend (24h): "
+					   Style="{StaticResource Style.TextBlock.Label}"
 					   Grid.Row="4"/>
 
 			<StackPanel Orientation="Horizontal"
 						Grid.Column="2"
 						Grid.Row="4">
 				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange24H, StringFormat='{}{0:+0.00;-0.00;0} %'}"
+						   ToolTip="The price change within the last 24 hours"
 						   Foreground="{Binding CurrentMarketInfo.PercentChange24H, Converter={StaticResource Converter.TrendBrush}}" />
 			</StackPanel>
 
 			<TextBlock Text="Volume (24h): "
+					   Style="{StaticResource Style.TextBlock.Label}"
 					   Grid.Row="6"/>
 
 			<StackPanel Orientation="Horizontal"
 						Grid.Column="2"
 						Grid.Row="6">
 				<TextBlock Text="{Binding CurrentMarketInfo.Volume24HUSD, StringFormat='$ {0:N0}'}"
-					   Foreground="{StaticResource Brush.Dollar}"/>
+						   ToolTip="The traded volume of Dogecoin within the last 24 hours"
+					   Foreground="{StaticResource Brush.Volume.Text}"/>
 			</StackPanel>
 
 			<TextBlock Text="Market cap: "
+					   Style="{StaticResource Style.TextBlock.Label}"
 					   Grid.Row="8"/>
 
 			<StackPanel Orientation="Horizontal"
 						Grid.Column="2"
 						Grid.Row="8">
 				<TextBlock Text="{Binding CurrentMarketInfo.MarketCapUSD, StringFormat='$ {0:N0}'}"
-					   Foreground="{StaticResource Brush.Dollar}"/>
+						   Foreground="{StaticResource Brush.MarketCap}"
+						   ToolTip="The total market capitalization of Dogecoin" />
 			</StackPanel>
 
 		</Grid>
@@ -101,9 +115,11 @@
 			  HorizontalAlignment="Stretch"
 			  Visibility="{Binding IsDataLoaded, Converter={StaticResource Converter.BoolToVisibility}}">
 			<TabControl VerticalContentAlignment="Stretch"
-						HorizontalContentAlignment="Center">
+						HorizontalContentAlignment="Center"
+						local:TabControlExtensions.TabControlCaption="Charts:"
+						local:TabControlExtensions.TabControlCaptionWidth="{Binding ElementName=captionWidthReference, Path=ActualWidth}">
 				<TabItem Header="1d"
-						 ToolTip="Chart showing 1 day"
+						 ToolTip="Current day, resolution: 1 hour"
 						 VerticalContentAlignment="Stretch"
 						 HorizontalContentAlignment="Stretch">
 					<local:SimpleMovingChart ItemsSource="{Binding Prices1D}"
@@ -111,7 +127,7 @@
 											 />
 				</TabItem>
 				<TabItem Header="7d"
-						 ToolTip="Chart showing 7 days"
+						 ToolTip="Current week, resolution: 1 hour"
 						 VerticalContentAlignment="Stretch"
 						 HorizontalContentAlignment="Stretch">
 					<local:SimpleMovingChart ItemsSource="{Binding Prices7D}"
@@ -119,7 +135,7 @@
 											 />
 				</TabItem>
 				<TabItem Header="1m"
-						 ToolTip="Chart showing 1 month"
+						 ToolTip="Current month, resolution: 1 day"
 						 VerticalContentAlignment="Stretch"
 						 HorizontalContentAlignment="Stretch">
 					<local:SimpleMovingChart ItemsSource="{Binding Prices1M}"

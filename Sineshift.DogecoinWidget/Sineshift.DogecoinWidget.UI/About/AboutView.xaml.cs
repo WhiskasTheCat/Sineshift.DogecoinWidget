@@ -1,5 +1,4 @@
-﻿using Sineshift.DogecoinWidget.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,15 @@ using System.Windows.Shapes;
 namespace Sineshift.DogecoinWidget.UI
 {
 	/// <summary>
-	/// Interaction logic for ShellView.xaml
+	/// Interaction logic for AboutView.xaml
 	/// </summary>
-	public partial class ShellView : UserControl
+	public partial class AboutView : UserControl
 	{
-		public ShellView()
+		public AboutView(AboutViewModel vm)
 		{
 			InitializeComponent();
 
-			this.DataContext = ServiceLocator.Current.Get<ShellViewModel>();
+			this.DataContext = vm;
 		}
 	}
 }

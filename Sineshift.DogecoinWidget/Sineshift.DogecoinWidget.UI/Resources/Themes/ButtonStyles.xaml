@@ -18,13 +18,13 @@
 								 Value="true">
 							<Setter TargetName="root"
 									Property="Opacity"
-									Value="0.75" />
+									Value="0.5" />
 						</Trigger>
 						<Trigger Property="IsPressed"
 								 Value="true">
 							<Setter TargetName="root"
 									Property="Opacity"
-									Value="0.5" />
+									Value="0.25" />
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
