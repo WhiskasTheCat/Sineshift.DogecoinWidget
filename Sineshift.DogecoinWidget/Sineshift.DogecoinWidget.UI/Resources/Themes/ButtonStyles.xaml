@@ -5,6 +5,8 @@
 
 	<Style TargetType="{x:Type Button}"
 		   x:Key="Style.Button.Lookless">
+		<Setter Property="FontWeight"
+				Value="Bold" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">

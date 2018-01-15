@@ -51,6 +51,10 @@
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="About\AboutViewModel.cs" />
+    <Compile Include="About\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Behaviors\HyperlinkBehavior.cs" />
     <Compile Include="Behaviors\TabControlExtensions.cs" />
     <Compile Include="Controls\SimpleMovingChart.cs" />
     <Compile Include="Overview\OverviewView.xaml.cs">
@@ -100,6 +104,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="About\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="About\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,6 +171,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Heart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Bitcoin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Ethereum.png" />
+    <Resource Include="Resources\Images\Litecoin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

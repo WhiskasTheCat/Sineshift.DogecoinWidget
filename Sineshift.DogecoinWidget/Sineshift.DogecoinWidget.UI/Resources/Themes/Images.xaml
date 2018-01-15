@@ -15,5 +15,17 @@
 
 	<BitmapImage UriSource="../Images/Dogecoin.png"
 				 x:Key="Image.Dogecoin" />
+
+	<BitmapImage UriSource="../Images/Heart.png"
+				 x:Key="Image.Heart" />
+
+	<BitmapImage UriSource="../Images/Bitcoin.png"
+				 x:Key="Image.Bitcoin" />
+
+	<BitmapImage UriSource="../Images/Ethereum.png"
+				 x:Key="Image.Ethereum" />
+
+	<BitmapImage UriSource="../Images/Litecoin.png"
+				 x:Key="Image.Litecoin" />
 	
 </ResourceDictionary>

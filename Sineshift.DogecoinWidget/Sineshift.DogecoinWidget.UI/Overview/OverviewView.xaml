@@ -116,7 +116,7 @@
 			  Visibility="{Binding IsDataLoaded, Converter={StaticResource Converter.BoolToVisibility}}">
 			<TabControl VerticalContentAlignment="Stretch"
 						HorizontalContentAlignment="Center"
-						local:TabControlExtensions.TabControlCaption="Charts:"
+						local:TabControlExtensions.TabControlCaption="Chart:"
 						local:TabControlExtensions.TabControlCaptionWidth="{Binding ElementName=captionWidthReference, Path=ActualWidth}">
 				<TabItem Header="1d"
 						 ToolTip="Current day, resolution: 1 hour"

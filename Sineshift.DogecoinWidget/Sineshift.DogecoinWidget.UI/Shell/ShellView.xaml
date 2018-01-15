@@ -33,7 +33,7 @@
 						Width="16"
 						Height="16"
 						ToolTip="So about"
-						Margin="0,0,5,0">
+						Margin="0,0,10,0">
 					<Image Source="{StaticResource Image.About}" 
 						   Margin="1"/>
 				</Button>

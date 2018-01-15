@@ -5,24 +5,21 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Sineshift.DogecoinWidget.UI
 {
 	public class AboutViewModel : ObservableObject
 	{
-		Navigator navigator;
-
-		public AboutViewModel(Navigator navigator)
+		public AboutViewModel(Window parent)
 		{
-			this.navigator = navigator;
-
-			GoBackCommand = new RelayCommand(() => navigator.Navigate<OverviewView>());
+			GoBackCommand = new RelayCommand(() => parent.Close());
 		}
 
 		public string Version
 		{
-			get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+			get { return Assembly.GetEntryAssembly().GetName().Version.ToString(); }
 		}
 
 		public ICommand GoBackCommand

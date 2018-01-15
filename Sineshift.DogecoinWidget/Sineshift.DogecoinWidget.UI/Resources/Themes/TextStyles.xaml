@@ -11,6 +11,15 @@
 				Value="{StaticResource Brush.Foreground.Primary}" />
 	</Style>
 
+	<Style TargetType="{x:Type TextBox}">
+		<Setter Property="FontFamily"
+				Value="Comic Sans MS" />
+		<Setter Property="FontSize"
+				Value="14" />
+		<Setter Property="Foreground"
+				Value="{StaticResource Brush.Foreground.Primary}" />
+	</Style>
+	
 	<Style TargetType="{x:Type TextBlock}"
 		   BasedOn="{StaticResource {x:Type TextBlock}}"
 		   x:Key="Style.TextBlock.WindowCaption">
@@ -30,7 +39,33 @@
 		   BasedOn="{StaticResource {x:Type TextBlock}}"
 		   x:Key="Style.TextBlock.Caption">
 		<Setter Property="FontSize"
-				Value="16" />
+				Value="18" />
+	</Style>
+
+	<Style TargetType="{x:Type TextBlock}"
+		   BasedOn="{StaticResource {x:Type TextBlock}}"
+		   x:Key="Style.TextBlock.SubCaption">
+		<Setter Property="FontWeight"
+				Value="Bold" />
+		<Setter Property="FontSize"
+				Value="11" />
 	</Style>
 	
+	<Style TargetType="{x:Type Hyperlink}">
+		<Setter Property="Foreground"
+				Value="{StaticResource Brush.Hyperlink}" />
+	</Style>
+
+	<Style TargetType="{x:Type TextBox}"
+		    BasedOn="{StaticResource {x:Type TextBox}}"
+		   x:Key="Style.TextBox.Lookless">
+		<Setter Property="Background"
+				Value="Transparent" />
+		<Setter Property="BorderBrush"
+				Value="Transparent" />
+		<Setter Property="BorderThickness"
+				Value="0" />
+		<Setter Property="IsReadOnly"
+				Value="True" />
+	</Style>
 </ResourceDictionary>

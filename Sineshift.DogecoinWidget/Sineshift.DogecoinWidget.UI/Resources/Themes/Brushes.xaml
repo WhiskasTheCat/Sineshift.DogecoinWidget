@@ -11,6 +11,9 @@
 	<SolidColorBrush x:Key="Brush.Foreground.Primary"
 					 Color="#000000" />
 
+	<SolidColorBrush x:Key="Brush.Hyperlink"
+					 Color="#0080ff" />
+	
 	<SolidColorBrush x:Key="Brush.Dollar"
 					 Color="#008000" />
 
