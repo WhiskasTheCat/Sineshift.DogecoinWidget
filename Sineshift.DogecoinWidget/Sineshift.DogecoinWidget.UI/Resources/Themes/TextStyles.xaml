@@ -18,6 +18,12 @@
 				Value="14" />
 		<Setter Property="Foreground"
 				Value="{StaticResource Brush.Foreground.Primary}" />
+		<Setter Property="Background"
+				Value="Transparent" />
+		<Setter Property="BorderThickness"
+				Value="1" />
+		<Setter Property="BorderBrush"
+				Value="{StaticResource Brush.Tab.Background}" />
 	</Style>
 	
 	<Style TargetType="{x:Type TextBlock}"

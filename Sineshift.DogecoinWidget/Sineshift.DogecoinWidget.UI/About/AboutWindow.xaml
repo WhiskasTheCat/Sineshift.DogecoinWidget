@@ -6,17 +6,15 @@
         xmlns:local="clr-namespace:Sineshift.DogecoinWidget.UI"
 		xmlns:cui="clr-namespace:Sineshift.DogecoinWidget.Common.UI;assembly=Sineshift.DogecoinWidget.Common.UI"
         mc:Ignorable="d"
-        Title="About Dogecoin Widget" 
+		Style="{StaticResource Style.Window.Primary}"
+        Title="Much about, amaze" 
 		Height="450" 
 		Width="450"
-		SnapsToDevicePixels="True"
-		UseLayoutRounding="False"
-		WindowStyle="None"
 		ShowInTaskbar="False"
-		WindowStartupLocation="CenterOwner"
-		WindowState="Normal"
-		AllowsTransparency="True"
-		Background="Transparent">
+		WindowStartupLocation="CenterOwner">
+
+	<!-- If you fork this, please do not remove the original credits or donation addresses! -->
+
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -24,35 +22,11 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Border Background="{StaticResource Brush.Background.Primary}"
-				Grid.RowSpan="3"
-				CornerRadius="5"
-				Name="border" />
-
-		<Border Background="{StaticResource Brush.GlassGradient}"
-				Grid.RowSpan="3"
-				CornerRadius="5"
-				Margin="1"/>
-
-		<Border Background="{StaticResource Brush.GlassBubble}"
-				Grid.RowSpan="3"
-				CornerRadius="5"
-				Margin="1"
-				Height="48"
-				HorizontalAlignment="Stretch"
-				VerticalAlignment="Top" />
-
-		<cui:WindowMovingThumb Window="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-							   HorizontalAlignment="Stretch"
-							   VerticalAlignment="Top"
-							   Grid.RowSpan="3"
-							   Height="32"/>
-
 		<TextBlock	Style="{StaticResource Style.TextBlock.Caption}"
-					Text="About Dogecoin Widget"
+					Text="Much about, amaze"
 					IsHitTestVisible="False"
 					Margin="10,5,10,5"/>
-	
+
 
 		<Button Style="{StaticResource Style.Button.Lookless}"
 				Width="16"
@@ -60,13 +34,181 @@
 				Margin="5"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Top"
-				ToolTip="Much close"
+				ToolTip="Very close"
 				Command="{Binding GoBackCommand}">
 			<Image Source="{StaticResource Image.Close}"
 					Margin="1"/>
 		</Button>
 
-		<local:AboutView Grid.Row="1" />
+		<Grid Grid.Row="1"
+			  Margin="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="10" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<StackPanel Grid.ColumnSpan="3">
+				<TextBlock Text="Created by:"
+					   Style="{StaticResource Style.TextBlock.SubCaption}" />
+				<TextBlock Text="Andrej Kuznecov (WhiskasTheCat)" />
+			</StackPanel>
+
+			<StackPanel Grid.Column="0"
+					Grid.Row="2">
+				<TextBlock Text="Website:"
+					   Style="{StaticResource Style.TextBlock.SubCaption}" />
+				<TextBlock>
+				<Hyperlink NavigateUri="http://sineshift.com"
+						   ToolTip="http://sineshift.com"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">sineshift.com</Hyperlink>
+				</TextBlock>
+			</StackPanel>
+
+			<StackPanel Grid.Column="2"
+					Grid.Row="2">
+				<TextBlock Text="E-Mail:"
+					   Style="{StaticResource Style.TextBlock.SubCaption}" />
+				<TextBlock>
+				<Hyperlink NavigateUri="mailto:info@sineshift.com"
+						   ToolTip="info@sineshift.com"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">info@sineshift.com</Hyperlink>
+				</TextBlock>
+			</StackPanel>
+
+			<StackPanel Grid.ColumnSpan="3"
+					Grid.Row="4">
+				<TextBlock Text="Code:"
+					   Style="{StaticResource Style.TextBlock.SubCaption}" />
+				<TextBlock>
+				<Hyperlink NavigateUri="https://github.com/WhiskasTheCat/Sineshift.DogecoinWidget"
+						   ToolTip="https://github.com/WhiskasTheCat/Sineshift.DogecoinWidget"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">github.com/WhiskasTheCat/Sineshift.DogecoinWidget</Hyperlink>
+				</TextBlock>
+			</StackPanel>
+
+			<StackPanel Grid.ColumnSpan="3"
+					Grid.Row="6">
+				<TextBlock Text="Data sources:"
+					   Style="{StaticResource Style.TextBlock.SubCaption}" />
+				<TextBlock>
+				<Hyperlink NavigateUri="https://coinmarketcap.com"
+						   ToolTip="The general market data is taken from coinmarketcap.com"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">coinmarketcap.com</Hyperlink>
+				<Run>, </Run>
+				<Hyperlink NavigateUri="https://cryptocompare.com"
+						   ToolTip="The chart data is taken from bittrex via cryptocompare.com"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">cryptocompare.com</Hyperlink>
+				<Run>, </Run>
+				<Hyperlink NavigateUri="https://bittrex.com"
+						   ToolTip="The chart data is taken from bittrex via cryptocompare.com"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">bittrex.com</Hyperlink>
+				</TextBlock>
+			</StackPanel>
+
+			<StackPanel Grid.ColumnSpan="3"
+					Grid.Row="8">
+				<TextBlock Text="About:"
+					   Style="{StaticResource Style.TextBlock.SubCaption}" />
+
+				<StackPanel Margin="0,0,0,10">
+					<TextBlock TextWrapping="Wrap">
+					<Run Text="This widget shows current market data for" />
+					<Hyperlink NavigateUri="http://dogecoin.com/"
+						   ToolTip="http://dogecoin.com/"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">Dogecoin</Hyperlink>
+					<Run Text=". It is free and open source and was made with love to benefit all shibes in the dogeverse." />
+					</TextBlock>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+						Margin="0,0,0,10">
+					<TextBlock Text="If you " 
+						   FontWeight="Bold" />
+					<Image Source="{StaticResource Image.Heart}"
+					   Height="14" />
+					<TextBlock Text=" it consider donating:"
+						   FontWeight="Bold" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal"
+						Margin="0,0,0,5">
+					<Image Source="{StaticResource Image.Dogecoin}"
+					   Height="16"
+					   Margin="0,0,5,0"/>
+					<TextBox Style="{StaticResource Style.TextBox.Lookless}"
+						 ToolTip="Dogecoin address"
+					     Text="D9orjdiDNakJhLUT23nvPhAUVPuzWatDVV" />
+					<Button Style="{StaticResource Style.Button.Lookless}"
+							Width="16"
+							Height="16"
+							Margin="5,0,0,0"
+							local:CopyOnClickBehavior.CopySource="D9orjdiDNakJhLUT23nvPhAUVPuzWatDVV"
+							ToolTip="Copy Dogecoin address">
+						<Image Source="{StaticResource Image.Copy}" />
+					</Button>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+						Margin="0,0,0,5">
+					<Image Source="{StaticResource Image.Bitcoin}"
+					   Height="16"
+					   Margin="0,0,5,0"/>
+					<TextBox Style="{StaticResource Style.TextBox.Lookless}"
+						 ToolTip="Bitcoin address"
+					     Text="1KvBvppjWfKKWts5B56BXSXXL67pEo7BaH" />
+					<Button Style="{StaticResource Style.Button.Lookless}"
+							Width="16"
+							Height="16"
+							Margin="5,0,0,0"
+							local:CopyOnClickBehavior.CopySource="1KvBvppjWfKKWts5B56BXSXXL67pEo7BaH"
+							ToolTip="Copy Bitcoin address">
+						<Image Source="{StaticResource Image.Copy}" />
+					</Button>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+						Margin="0,0,0,5">
+					<Image Source="{StaticResource Image.Ethereum}"
+					   Height="16"
+					   Margin="0,0,5,0"/>
+					<TextBox Style="{StaticResource Style.TextBox.Lookless}"
+						 ToolTip="Ethereum address"
+					     Text="0x5e1ebc7b7e1101c8ee0d8edf08122a7c939824c7" />
+					<Button Style="{StaticResource Style.Button.Lookless}"
+							Width="16"
+							Height="16"
+							Margin="5,0,0,0"
+							local:CopyOnClickBehavior.CopySource="0x5e1ebc7b7e1101c8ee0d8edf08122a7c939824c7"
+							ToolTip="Copy Ethereum address">
+						<Image Source="{StaticResource Image.Copy}" />
+					</Button>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Image Source="{StaticResource Image.Litecoin}"
+					   Height="16"
+					   Margin="0,0,5,0"/>
+					<TextBox Style="{StaticResource Style.TextBox.Lookless}"
+						 ToolTip="Litecoin address"
+					     Text="LWLDrQCnsUWp23B6QVNJGF76vccFKyeMBF" />
+					<Button Style="{StaticResource Style.Button.Lookless}"
+							Width="16"
+							Height="16"
+							Margin="5,0,0,0"
+							local:CopyOnClickBehavior.CopySource="LWLDrQCnsUWp23B6QVNJGF76vccFKyeMBF"
+							ToolTip="Copy Litecoin address">
+						<Image Source="{StaticResource Image.Copy}" />
+					</Button>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
 
 		<Grid Grid.Row="2"
 				Margin="10,0,10,10">
@@ -79,6 +221,6 @@
 					Command="{Binding GoBackCommand}"
 					HorizontalAlignment="Right"/>
 		</Grid>
-		
+
 	</Grid>
 </Window>

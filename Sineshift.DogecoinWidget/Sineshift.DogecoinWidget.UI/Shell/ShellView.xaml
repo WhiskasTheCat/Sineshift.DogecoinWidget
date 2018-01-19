@@ -21,18 +21,19 @@
 			<StackPanel Orientation="Horizontal"
 						HorizontalAlignment="Right">
 				<!-- We will likely need this setting button in the future, so I didn't delete it yet -->
-				<!--<Button Style="{StaticResource Style.Button.Lookless}"
+				<Button Style="{StaticResource Style.Button.Lookless}"
+						Command="{Binding ShowSettingsCommand}"
 						Width="16"
 						Height="16"
-						ToolTip="Very settings"
-						Margin="0,0,5,0">
+						ToolTip="Many settings"
+						Margin="0,0,10,0">
 					<Image Source="{StaticResource Image.Settings}" />
-				</Button>-->
+				</Button>
 				<Button Style="{StaticResource Style.Button.Lookless}"
 						Command="{Binding ShowAboutCommand}"
 						Width="16"
 						Height="16"
-						ToolTip="So about"
+						ToolTip="Much about"
 						Margin="0,0,10,0">
 					<Image Source="{StaticResource Image.About}" 
 						   Margin="1"/>
@@ -40,7 +41,7 @@
 				<Button Style="{StaticResource Style.Button.Lookless}"
 						Width="16"
 						Height="16"
-						ToolTip="Much close"
+						ToolTip="Very close"
 						Command="{Binding CloseApplicationCommand}">
 					<Image Source="{StaticResource Image.Close}"
 						   Margin="1"/>

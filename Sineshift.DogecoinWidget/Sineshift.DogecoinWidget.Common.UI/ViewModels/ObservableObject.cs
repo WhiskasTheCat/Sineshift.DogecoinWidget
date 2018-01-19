@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sineshift.DogecoinWidget.Common.UI
 {
+	[Serializable]
 	public abstract class ObservableObject : INotifyPropertyChanged
 	{
 		[field: NonSerialized]

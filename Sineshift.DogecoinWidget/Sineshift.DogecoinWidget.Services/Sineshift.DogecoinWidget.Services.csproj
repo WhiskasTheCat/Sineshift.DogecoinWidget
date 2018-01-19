@@ -63,9 +63,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoinMarketService\BitcoinDollarPair.cs" />
-    <Compile Include="CoinMarketService\CoinMarketInfo.cs" />
-    <Compile Include="CoinMarketService\CoinMarketService.cs" />
+    <Compile Include="CoinMarket\BitcoinDollarPair.cs" />
+    <Compile Include="CoinMarket\CoinMarketInfo.cs" />
+    <Compile Include="CoinMarket\CoinMarketService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +79,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Settings\SettingsService.cs" />
+    <Compile Include="Settings\WidgetSettings.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -91,6 +93,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sineshift.DogecoinWidget.Common.UI\Sineshift.DogecoinWidget.Common.UI.csproj">
+      <Project>{898E0D50-AE0F-4279-89A7-E050EA11D5AF}</Project>
+      <Name>Sineshift.DogecoinWidget.Common.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sineshift.DogecoinWidget.Common\Sineshift.DogecoinWidget.Common.csproj">
       <Project>{927ef5d8-ca3b-41f9-9bc9-afa5812503af}</Project>
       <Name>Sineshift.DogecoinWidget.Common</Name>

@@ -209,6 +209,7 @@ namespace Sineshift.DogecoinWidget.UI
 				var x = startX + i * widthPerPrice;
 				var relativeY = (volume - min) / span;
 				var y = canvasPart.ActualHeight * (1.0 - relativeY);
+				y = y > canvasPart.ActualHeight - 1 ? canvasPart.ActualHeight - 1 : y;
 				var height = canvasPart.ActualHeight - y;
 
 				var line = new Rectangle()

@@ -22,9 +22,16 @@ namespace Sineshift.DogecoinWidget.UI
 	
 			CloseApplicationCommand = new RelayCommand(() => Application.Current.Shutdown());
 			ShowAboutCommand = new RelayCommand(ShowAboutDialog);
+			ShowSettingsCommand = new RelayCommand(ShowSettingsDialog);
 		}
 
 		public ICommand ShowAboutCommand
+		{
+			get;
+			private set;
+		}
+
+		public ICommand ShowSettingsCommand
 		{
 			get;
 			private set;
@@ -38,7 +45,14 @@ namespace Sineshift.DogecoinWidget.UI
 
 		private void ShowAboutDialog()
 		{
-			var dialog = new AboutWindow();
+			var dialog = ServiceLocator.Current.Get<AboutWindow>();
+			dialog.Owner = Application.Current.MainWindow;
+			dialog.ShowDialog();
+		}
+
+		private void ShowSettingsDialog()
+		{
+			var dialog = ServiceLocator.Current.Get<SettingsWindow>();
 			dialog.Owner = Application.Current.MainWindow;
 			dialog.ShowDialog();
 		}

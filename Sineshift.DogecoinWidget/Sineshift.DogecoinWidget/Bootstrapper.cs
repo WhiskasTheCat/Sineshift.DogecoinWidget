@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Sineshift.DogecoinWidget
 {
@@ -24,11 +25,14 @@ namespace Sineshift.DogecoinWidget
 
 			Logger.Current.Info("Running bootstrapper...");
 
+			ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(30000));
+
 			Application.Current.DispatcherUnhandledException += OnDispatcherException;
 			AppDomain.CurrentDomain.UnhandledException += OnException;
 
 			ServiceLocator.Current
 				.SetSingleton<ILogger>(Logger.Current)
+				.SetSingleton<SettingsService>()
 				.SetSingleton<CoinMarketService>()
 				.SetSingleton<Navigator>();
 

@@ -38,7 +38,7 @@
 					 Color="#00b000" />
 
 	<SolidColorBrush x:Key="Brush.Bear"
-					 Color="#b00000" />
+					 Color="#d00000" />
 
 	<SolidColorBrush x:Key="Brush.Tab.Background"
 					 Color="#40a17c34" />

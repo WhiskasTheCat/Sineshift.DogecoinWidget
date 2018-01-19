@@ -20,22 +20,24 @@
 		</Grid.RowDefinitions>
 
 
-		<Grid Margin="10,10,10,5"
+		<Grid Margin="10,10,10,10"
 			  Visibility="{Binding IsDataLoaded, Converter={StaticResource Converter.BoolToVisibility}}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="5" />
+				<ColumnDefinition Width="10" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="5" />
+				<RowDefinition Height="10" />
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="5" />
+				<RowDefinition Height="10" />
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="5" />
+				<RowDefinition Height="10" />
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="5" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
@@ -43,7 +45,7 @@
 				  Name="captionWidthReference"
 				  Grid.ColumnSpan="2"/>
 			
-			<TextBlock Text="Rank: " 
+			<TextBlock Text="Rank:" 
 					   Style="{StaticResource Style.TextBlock.Label}"
 					    Grid.Row="0"/>
 
@@ -55,7 +57,7 @@
 						   ToolTip="Rank among other coins according to market cap"/>
 			</StackPanel>
 
-			<TextBlock Text="Price: " 
+			<TextBlock Text="Price:" 
 					   Style="{StaticResource Style.TextBlock.Label}"
 					    Grid.Row="2"/>
 
@@ -63,45 +65,90 @@
 						Grid.Column="2"
 						 Grid.Row="2">
 				<TextBlock Text="{Binding CurrentMarketInfo.PriceUSD, StringFormat='$ {0:0.0000##}'}"
-						   ToolTip="Price of 1 Dogecoin in USD"
+						   ToolTip="Price of 1 Dogecoin in USD. Remember that the actual price of 1 Ð = 1 Ð is not influenced by this."
 							Foreground="{StaticResource Brush.Dollar}"/>
 				<TextBlock Text=" / " />
 				<TextBlock Text="{Binding CurrentMarketInfo.PriceBTC, StringFormat='Ƀ {0:0.00000000}'}"
-						   ToolTip="Price of 1 Dogecoin in Bitcoin"
+						   ToolTip="Price of 1 Dogecoin in Bitcoin. Remember that the actual price of 1 Ð = 1 Ð is not influenced by this."
 							Foreground="{StaticResource Brush.Bitcoin}"/>
 			</StackPanel>
 
-			<TextBlock Text="Trend (24h): "
+			<TextBlock Text="Portfolio:" 
 					   Style="{StaticResource Style.TextBlock.Label}"
-					   Grid.Row="4"/>
+					    Grid.Row="4"/>
 
-			<StackPanel Orientation="Horizontal"
-						Grid.Column="2"
-						Grid.Row="4">
-				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange24H, StringFormat='{}{0:+0.00;-0.00;0} %'}"
-						   ToolTip="The price change within the last 24 hours"
-						   Foreground="{Binding CurrentMarketInfo.PercentChange24H, Converter={StaticResource Converter.TrendBrush}}" />
-			</StackPanel>
+			<Grid Grid.Column="2"
+				  Grid.Row="4">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
 
-			<TextBlock Text="Volume (24h): "
+				<Grid HorizontalAlignment="Left"
+					  Width="{Binding ElementName=portfolioLayoutReference, Path=ActualWidth}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="5" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<TextBlock Text="{Binding CurrentSettings.PortfolioDogecoins, StringFormat='Ð {0} × Price ='}"
+							   ToolTip="The amount of Dogecoins you own"
+							   Style="{StaticResource Style.TextBlock.SubCaption}"/>
+				</Grid>
+				
+				
+				<StackPanel Orientation="Horizontal"
+							Name="portfolioLayoutReference"
+							HorizontalAlignment="Left"
+							Grid.Row="1">
+					<TextBlock Text="{Binding PortfolioPriceUSD, StringFormat='$ {0:0.0000##}'}"
+						   ToolTip="Your portfolio value in USD"
+							Foreground="{StaticResource Brush.Dollar}"/>
+					<TextBlock Text=" / " />
+					<TextBlock Text="{Binding PortfolioPriceBTC, StringFormat='Ƀ {0:0.00000000}'}"
+						   ToolTip="Your portfolio value in Bitcoin"
+							Foreground="{StaticResource Brush.Bitcoin}"/>
+				</StackPanel>
+			</Grid>
+			
+
+			<TextBlock Text="Trend:"
 					   Style="{StaticResource Style.TextBlock.Label}"
 					   Grid.Row="6"/>
 
 			<StackPanel Orientation="Horizontal"
 						Grid.Column="2"
 						Grid.Row="6">
-				<TextBlock Text="{Binding CurrentMarketInfo.Volume24HUSD, StringFormat='$ {0:N0}'}"
-						   ToolTip="The traded volume of Dogecoin within the last 24 hours"
-					   Foreground="{StaticResource Brush.Volume.Text}"/>
+				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange24H, StringFormat='{}{0:+0.00;-0.00;0} %'}"
+						   ToolTip="The price change within the last 24 hours"
+						   Foreground="{Binding CurrentMarketInfo.PercentChange24H, Converter={StaticResource Converter.TrendBrush}}" />
+				<TextBlock Text=" (1d) / " />
+				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange7D, StringFormat='{}{0:+0.00;-0.00;0} %'}"
+						   ToolTip="The price change within the last 7 days"
+						   Foreground="{Binding CurrentMarketInfo.PercentChange7D, Converter={StaticResource Converter.TrendBrush}}" />
+				<TextBlock Text=" (7d)" />
 			</StackPanel>
 
-			<TextBlock Text="Market cap: "
+			<TextBlock Text="Volume:"
 					   Style="{StaticResource Style.TextBlock.Label}"
 					   Grid.Row="8"/>
 
 			<StackPanel Orientation="Horizontal"
 						Grid.Column="2"
 						Grid.Row="8">
+				<TextBlock Text="{Binding CurrentMarketInfo.Volume24HUSD, StringFormat='$ {0:N0}'}"
+						   ToolTip="The traded volume of Dogecoin within the last 24 hours"
+					   Foreground="{StaticResource Brush.Volume.Text}"/>
+			</StackPanel>
+
+			<TextBlock Text="Market cap:"
+					   Style="{StaticResource Style.TextBlock.Label}"
+					   Grid.Row="10"/>
+
+			<StackPanel Orientation="Horizontal"
+						Grid.Column="2"
+						Grid.Row="10">
 				<TextBlock Text="{Binding CurrentMarketInfo.MarketCapUSD, StringFormat='$ {0:N0}'}"
 						   Foreground="{StaticResource Brush.MarketCap}"
 						   ToolTip="The total market capitalization of Dogecoin" />
@@ -183,7 +230,8 @@
 		<Image Source="{StaticResource Image.Doge}"
 			   Grid.Row="2"
 			   Stretch="Uniform"
-			   Width="32"
+			   Height="32"
+			   Visibility="Collapsed"
 			   HorizontalAlignment="Left"
 			   VerticalAlignment="Bottom" />
 

@@ -80,11 +80,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Resources\Themes\Themes.xaml">
+    <Page Include="Resources\Themes\WindowMovingThumbStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Themes\WindowMovingThumbStyles.xaml">
+    <Page Include="Resources\Themes\WindowStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

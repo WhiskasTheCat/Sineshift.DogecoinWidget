@@ -16,6 +16,7 @@ namespace Sineshift.DogecoinWidget.UI
 	{
 		readonly CoinMarketService marketService;
 		readonly DispatcherTimer timer;
+		readonly SettingsService settingsService;
 		CoinMarketInfo currentMarketInfo;
 		IReadOnlyList<BitcoinDollarPair> prices1H;
 		IReadOnlyList<BitcoinDollarPair> prices1D;
@@ -23,9 +24,12 @@ namespace Sineshift.DogecoinWidget.UI
 		IReadOnlyList<BitcoinDollarPair> prices1M;
 		bool isDataLoaded;
 
-		public OverviewViewModel(CoinMarketService marketService)
+		public OverviewViewModel(CoinMarketService marketService, SettingsService settingsService)
 		{
 			this.marketService = marketService;
+			this.settingsService = settingsService;
+
+			settingsService.CurrentSettings.PropertyChanged += (sender, e) => UpdatePortfolio();
 
 			timer = new DispatcherTimer();
 			timer.Interval = TimeSpan.FromSeconds(60);
@@ -38,6 +42,21 @@ namespace Sineshift.DogecoinWidget.UI
 		{
 			get { return isDataLoaded; }
 			private set { isDataLoaded = value; RaisePropertyChanged(); }
+		}
+
+		public WidgetSettings CurrentSettings
+		{
+			get { return settingsService.CurrentSettings; }
+		}
+
+		public double PortfolioPriceUSD
+		{
+			get { return CurrentMarketInfo == null ? 0 : CurrentMarketInfo.PriceUSD * CurrentSettings.PortfolioDogecoins; }
+		}
+
+		public double PortfolioPriceBTC
+		{
+			get { return CurrentMarketInfo == null ? 0 : CurrentMarketInfo.PriceBTC * CurrentSettings.PortfolioDogecoins; }
 		}
 
 		public IReadOnlyList<BitcoinDollarPair> Prices1H
@@ -107,6 +126,7 @@ namespace Sineshift.DogecoinWidget.UI
 				Prices1M = task1M.Result;
 
 				IsDataLoaded = CurrentMarketInfo != null;
+				UpdatePortfolio();
 				Logger.Current.Debug($"PriceInfo: BTC = {CurrentMarketInfo.PriceBTC}, USD = {CurrentMarketInfo.PriceUSD}");
 			}
 			catch(Exception ex)
@@ -116,6 +136,12 @@ namespace Sineshift.DogecoinWidget.UI
 				MessageBox.Show($"Could not update market info.\nReason: {ex.Message}.\nThis can have several reasons:\n1. You are not connected to the internet.\n2. You need to add a firewall exception for this application.\n3. Our price data source is down.\nThe program will reattempt to get market data in 1 minute or next time it is restarted.\nYou can find the technical reason for this error in the log file located here:\n{Logger.Current.LogPath}", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 				timer.Start();
 			}
+		}
+
+		private void UpdatePortfolio()
+		{
+			RaisePropertyChanged(nameof(PortfolioPriceBTC));
+			RaisePropertyChanged(nameof(PortfolioPriceUSD));
 		}
 	}
 }

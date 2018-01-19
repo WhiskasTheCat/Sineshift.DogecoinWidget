@@ -27,5 +27,8 @@
 
 	<BitmapImage UriSource="../Images/Litecoin.png"
 				 x:Key="Image.Litecoin" />
+
+	<BitmapImage UriSource="../Images/Copy.png"
+				 x:Key="Image.Copy" />
 	
 </ResourceDictionary>
