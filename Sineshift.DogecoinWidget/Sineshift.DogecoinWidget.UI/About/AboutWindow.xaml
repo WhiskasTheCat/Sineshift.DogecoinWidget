@@ -43,65 +43,70 @@
 		<Grid Grid.Row="1"
 			  Margin="10">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="10" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="10" />
+				<RowDefinition Height="0" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="10" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="10" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="20" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
-			<StackPanel Grid.ColumnSpan="3">
-				<TextBlock Text="Created by:"
-					   Style="{StaticResource Style.TextBlock.SubCaption}" />
-				<TextBlock Text="Andrej Kuznecov (WhiskasTheCat)" />
-			</StackPanel>
 
-			<StackPanel Grid.Column="0"
-					Grid.Row="2">
-				<TextBlock Text="Website:"
-					   Style="{StaticResource Style.TextBlock.SubCaption}" />
-				<TextBlock>
+			<TextBlock Text="Author:"
+					   Grid.Row="2"
+					   Style="{StaticResource Style.TextBlock.Label}" />
+			<TextBlock Text="Andrej Kuznecov (WhiskasTheCat)"
+					   Grid.Column="2"
+					   Grid.Row="2"/>
+
+			<TextBlock Text="Website:"
+					   Grid.Row="4"
+					   Style="{StaticResource Style.TextBlock.Label}" />
+			<TextBlock Grid.Row="4"
+					   Grid.Column="2">
 				<Hyperlink NavigateUri="http://sineshift.com"
-						   ToolTip="http://sineshift.com"
-						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">sineshift.com</Hyperlink>
-				</TextBlock>
-			</StackPanel>
+						ToolTip="http://sineshift.com"
+						local:HyperlinkBehavior.EnableHyperlinkNavigation="True">sineshift.com</Hyperlink>
+			</TextBlock>
 
-			<StackPanel Grid.Column="2"
-					Grid.Row="2">
-				<TextBlock Text="E-Mail:"
-					   Style="{StaticResource Style.TextBlock.SubCaption}" />
-				<TextBlock>
+			<TextBlock Text="E-Mail:"
+					    Grid.Row="6"
+					   Style="{StaticResource Style.TextBlock.Label}" />
+			<TextBlock Grid.Row="6"
+					   Grid.Column="2">
 				<Hyperlink NavigateUri="mailto:info@sineshift.com"
 						   ToolTip="info@sineshift.com"
 						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">info@sineshift.com</Hyperlink>
-				</TextBlock>
-			</StackPanel>
+			</TextBlock>
 
-			<StackPanel Grid.ColumnSpan="3"
-					Grid.Row="4">
-				<TextBlock Text="Code:"
-					   Style="{StaticResource Style.TextBlock.SubCaption}" />
-				<TextBlock>
+			<TextBlock Text="Code:"
+					   Grid.Row="8"
+					   Style="{StaticResource Style.TextBlock.Label}" />
+			<TextBlock Grid.Row="8"
+					   Grid.Column="2">
 				<Hyperlink NavigateUri="https://github.com/WhiskasTheCat/Sineshift.DogecoinWidget"
 						   ToolTip="https://github.com/WhiskasTheCat/Sineshift.DogecoinWidget"
-						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">github.com/WhiskasTheCat/Sineshift.DogecoinWidget</Hyperlink>
-				</TextBlock>
-			</StackPanel>
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">github.com</Hyperlink>
+			</TextBlock>
 
-			<StackPanel Grid.ColumnSpan="3"
-					Grid.Row="6">
-				<TextBlock Text="Data sources:"
-					   Style="{StaticResource Style.TextBlock.SubCaption}" />
-				<TextBlock>
+			<TextBlock Text="Data sources:"
+					    Grid.Row="10"
+					   Style="{StaticResource Style.TextBlock.Label}" />
+			<TextBlock Grid.Row="10"
+					   Grid.Column="2">
 				<Hyperlink NavigateUri="https://coinmarketcap.com"
 						   ToolTip="The general market data is taken from coinmarketcap.com"
 						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">coinmarketcap.com</Hyperlink>
@@ -109,34 +114,42 @@
 				<Hyperlink NavigateUri="https://cryptocompare.com"
 						   ToolTip="The chart data is taken from bittrex via cryptocompare.com"
 						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">cryptocompare.com</Hyperlink>
+			</TextBlock>
+
+			<TextBlock Text="Licenses:"
+					    Grid.Row="12"
+					   Style="{StaticResource Style.TextBlock.Label}" />
+			<TextBlock Grid.Row="12"
+					   Grid.Column="2"
+					   TextWrapping="Wrap">
+				<Run>Used libraries are included under the following licenses:</Run>
+				<Hyperlink NavigateUri="https://www.codeproject.com/info/cpol10.aspx"
+						   ToolTip="https://www.codeproject.com/info/cpol10.aspx"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">CPOL</Hyperlink>
 				<Run>, </Run>
-				<Hyperlink NavigateUri="https://bittrex.com"
-						   ToolTip="The chart data is taken from bittrex via cryptocompare.com"
-						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">bittrex.com</Hyperlink>
-				</TextBlock>
-			</StackPanel>
-
+				<Hyperlink NavigateUri="https://opensource.org/licenses/apache-2.0"
+						   ToolTip="https://opensource.org/licenses/apache-2.0"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">Apache-2.0</Hyperlink>
+				<Run>, </Run>
+				<Hyperlink NavigateUri="https://choosealicense.com/licenses/bsd-2-clause"
+						   ToolTip="https://choosealicense.com/licenses/bsd-2-clause"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">BSD 2-Clause</Hyperlink>
+				<Run>, </Run>
+				<Hyperlink NavigateUri="https://opensource.org/licenses/MIT"
+						   ToolTip="https://opensource.org/licenses/MIT"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">MIT</Hyperlink>
+			</TextBlock>
+			
 			<StackPanel Grid.ColumnSpan="3"
-					Grid.Row="8">
-				<TextBlock Text="About:"
-					   Style="{StaticResource Style.TextBlock.SubCaption}" />
-
-				<StackPanel Margin="0,0,0,10">
-					<TextBlock TextWrapping="Wrap">
-					<Run Text="This widget shows current market data for" />
-					<Hyperlink NavigateUri="http://dogecoin.com/"
-						   ToolTip="http://dogecoin.com/"
-						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">Dogecoin</Hyperlink>
-					<Run Text=". It is free and open source and was made with love to benefit all shibes in the dogeverse." />
-					</TextBlock>
-				</StackPanel>
+					Grid.Row="14">
+			
 				<StackPanel Orientation="Horizontal"
 						Margin="0,0,0,10">
 					<TextBlock Text="If you " 
 						   FontWeight="Bold" />
 					<Image Source="{StaticResource Image.Heart}"
 					   Height="14" />
-					<TextBlock Text=" it consider donating:"
+					<TextBlock Text=" this widget consider donating:"
 						   FontWeight="Bold" />
 				</StackPanel>
 
@@ -147,12 +160,12 @@
 					   Margin="0,0,5,0"/>
 					<TextBox Style="{StaticResource Style.TextBox.Lookless}"
 						 ToolTip="Dogecoin address"
-					     Text="D9orjdiDNakJhLUT23nvPhAUVPuzWatDVV" />
+					     Text="D986m3NRu5vU6X64iKA4JzwZhbeDKG8yEQ" />
 					<Button Style="{StaticResource Style.Button.Lookless}"
 							Width="16"
 							Height="16"
 							Margin="5,0,0,0"
-							local:CopyOnClickBehavior.CopySource="D9orjdiDNakJhLUT23nvPhAUVPuzWatDVV"
+							local:CopyOnClickBehavior.CopySource="D986m3NRu5vU6X64iKA4JzwZhbeDKG8yEQ"
 							ToolTip="Copy Dogecoin address">
 						<Image Source="{StaticResource Image.Copy}" />
 					</Button>
@@ -164,12 +177,12 @@
 					   Margin="0,0,5,0"/>
 					<TextBox Style="{StaticResource Style.TextBox.Lookless}"
 						 ToolTip="Bitcoin address"
-					     Text="1KvBvppjWfKKWts5B56BXSXXL67pEo7BaH" />
+					     Text="1LzpJ86YKgUB5C8dQcLkJw5yRUgzCdxS4k" />
 					<Button Style="{StaticResource Style.Button.Lookless}"
 							Width="16"
 							Height="16"
 							Margin="5,0,0,0"
-							local:CopyOnClickBehavior.CopySource="1KvBvppjWfKKWts5B56BXSXXL67pEo7BaH"
+							local:CopyOnClickBehavior.CopySource="1LzpJ86YKgUB5C8dQcLkJw5yRUgzCdxS4k"
 							ToolTip="Copy Bitcoin address">
 						<Image Source="{StaticResource Image.Copy}" />
 					</Button>
