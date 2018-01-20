@@ -20,7 +20,7 @@ namespace Sineshift.DogecoinWidget.Services
 		{
 			settingsPath = EnvironmentUtil.GetAppDataPath("Settings.json");
 			saveTimer = new DispatcherTimer();
-			saveTimer.Interval = TimeSpan.FromMilliseconds(500);
+			saveTimer.Interval = TimeSpan.FromMilliseconds(250);
 			saveTimer.Tick += OnSaveSettings;
 
 			try

@@ -55,7 +55,15 @@ namespace Sineshift.DogecoinWidget
 
 		private void OnWindowLoaded(object sender, RoutedEventArgs e)
 		{
-			WindowUtil.AttachToDesktop(Application.Current.MainWindow);
+			try
+			{
+				WindowUtil.AttachToDesktop(Application.Current.MainWindow);
+			}
+			catch(Exception ex)
+			{
+				Logger.Current.Error("Could not attach widget to desktop.", ex);
+				MessageBox.Show("Could not attach widget to desktop.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}
 		}
 
 		private void OnLocationChanged(object sender, EventArgs e)

@@ -30,5 +30,8 @@
 
 	<BitmapImage UriSource="../Images/Copy.png"
 				 x:Key="Image.Copy" />
+
+	<BitmapImage UriSource="../Images/DogecoinWidget.ico"
+				 x:Key="Image.TrayIcon" />
 	
 </ResourceDictionary>

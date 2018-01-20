@@ -168,6 +168,7 @@
 			  Visibility="{Binding IsDataLoaded, Converter={StaticResource Converter.BoolToVisibility}}">
 			<TabControl VerticalContentAlignment="Stretch"
 						HorizontalContentAlignment="Center"
+						SelectedIndex="{Binding CurrentSettings.SelectedTabIndex, Mode=TwoWay}"
 						local:TabControlExtensions.TabControlCaption="Chart:"
 						local:TabControlExtensions.TabControlCaptionWidth="{Binding ElementName=captionWidthReference, Path=ActualWidth}">
 				<TabItem Header="1d"
