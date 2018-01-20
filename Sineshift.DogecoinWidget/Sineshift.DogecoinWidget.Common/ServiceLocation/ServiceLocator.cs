@@ -22,6 +22,11 @@ namespace Sineshift.DogecoinWidget.Common
 			return kernel.Get<T>();
 		}
 
+		public object Get(Type type)
+		{
+			return kernel.Get(type);
+		}
+
 		public IServiceLocator SetSingleton<T>()
 		{
 			kernel.Bind<T>().ToSelf().InSingletonScope();

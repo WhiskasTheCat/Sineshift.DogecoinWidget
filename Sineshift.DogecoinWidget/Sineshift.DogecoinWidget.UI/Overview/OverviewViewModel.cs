@@ -108,11 +108,12 @@ namespace Sineshift.DogecoinWidget.UI
 		{
 			try
 			{
+				Logger.Current.Debug("Getting market info");
 				var taskMarket = marketService.GetCurrentMarketInfo();
 				// TO DO: 1H chart deactivated for now, seems rather useless because of huge fluctuations
 				// Instead, possibly add live chart data from market cap that builds up over time like it was before
 				//var task1H = marketService.GetPrices1H();
-				
+				Logger.Current.Debug("Getting prices");
 				var task1D = marketService.GetPrices1D();
 				var task7D = marketService.GetPrices7D();
 				var task1M = marketService.GetPrices1M();

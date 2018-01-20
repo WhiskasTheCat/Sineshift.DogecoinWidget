@@ -44,11 +44,11 @@
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 
-			<TextBlock Text="Portolio amount:"
+			<TextBlock Text="Owned Dogecoins:"
 					    Style="{StaticResource Style.TextBlock.Label}"/>
 			<TextBox Text="{Binding CurrentSettings.PortfolioDogecoins, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
 					 Grid.Column="2"
-					 ToolTip="Enter how many Dogecoins you own"/>
+					 ToolTip="Enter how many Dogecoins you own for portfolio calculations"/>
 		</Grid>
 
 		<Grid Grid.Row="2"

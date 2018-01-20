@@ -16,6 +16,8 @@ namespace Sineshift.DogecoinWidget
 {
 	public class Bootstrapper
 	{
+		SettingsService settingsService;
+
 		public FrameworkElement Run()
 		{
 			// US culture for price formatting
@@ -25,8 +27,7 @@ namespace Sineshift.DogecoinWidget
 
 			Logger.Current.Info("Running bootstrapper...");
 
-			ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(30000));
-
+			ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(30000));	
 			Application.Current.DispatcherUnhandledException += OnDispatcherException;
 			AppDomain.CurrentDomain.UnhandledException += OnException;
 
@@ -36,6 +37,13 @@ namespace Sineshift.DogecoinWidget
 				.SetSingleton<CoinMarketService>()
 				.SetSingleton<Navigator>();
 
+			settingsService = ServiceLocator.Current.Get<SettingsService>();
+
+			var window = Application.Current.MainWindow;
+			window.Top = settingsService.CurrentSettings.Top;
+			window.Left = settingsService.CurrentSettings.Left;
+			window.LocationChanged += OnLocationChanged;
+			window.Loaded += OnWindowLoaded;
 			Logger.Current.Info("Creating shell view...");
 
 			var shell = ServiceLocator.Current.Get<ShellView>();
@@ -43,6 +51,24 @@ namespace Sineshift.DogecoinWidget
 			Logger.Current.Info("Bootstrapper done.");
 
 			return shell;
+		}
+
+		private void OnWindowLoaded(object sender, RoutedEventArgs e)
+		{
+			WindowUtil.AttachToDesktop(Application.Current.MainWindow);
+		}
+
+		private void OnLocationChanged(object sender, EventArgs e)
+		{
+			var window = Application.Current.MainWindow;
+
+			if (!window.IsLoaded)
+			{
+				return;
+			}
+
+			settingsService.CurrentSettings.Top = window.Top;
+			settingsService.CurrentSettings.Left = window.Left;
 		}
 
 		private void OnException(object sender, UnhandledExceptionEventArgs e)

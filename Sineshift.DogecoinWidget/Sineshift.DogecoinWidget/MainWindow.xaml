@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:cui="clr-namespace:Sineshift.DogecoinWidget.Common.UI;assembly=Sineshift.DogecoinWidget.Common.UI"
         xmlns:local="clr-namespace:Sineshift.DogecoinWidget"
+		xmlns:s="clr-namespace:Sineshift.DogecoinWidget.Services;assembly=Sineshift.DogecoinWidget.Services"
 		Style="{StaticResource Style.Window.Primary}"
 		WindowStartupLocation="Manual"
         mc:Ignorable="d"

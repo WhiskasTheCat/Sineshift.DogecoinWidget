@@ -51,6 +51,7 @@
     <Compile Include="Controls\WindowMovingThumb.cs" />
     <Compile Include="Converters\BoolToValueConverter.cs" />
     <Compile Include="Converters\NumberSignConverter.cs" />
+    <Compile Include="MarkupExtensions\InjectExtension.cs" />
     <Compile Include="Navigation\INavigationObserver.cs" />
     <Compile Include="Navigation\INavigationTarget.cs" />
     <Compile Include="Navigation\NavigatedEventArgs.cs" />

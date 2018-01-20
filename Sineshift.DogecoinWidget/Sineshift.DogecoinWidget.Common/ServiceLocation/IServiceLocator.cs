@@ -9,6 +9,7 @@ namespace Sineshift.DogecoinWidget.Common
 	public interface IServiceLocator
 	{
 		T Get<T>();
+		object Get(Type type);
 		IServiceLocator SetSingleton<T>();
 		IServiceLocator SetSingleton<T>(T instance);
 	}

@@ -67,7 +67,7 @@
 				<TextBlock Text="{Binding CurrentMarketInfo.PriceUSD, StringFormat='$ {0:0.0000##}'}"
 						   ToolTip="Price of 1 Dogecoin in USD. Remember that the actual price of 1 Ð = 1 Ð is not influenced by this."
 							Foreground="{StaticResource Brush.Dollar}"/>
-				<TextBlock Text=" / " />
+				<TextBlock Text=" &#183; " />
 				<TextBlock Text="{Binding CurrentMarketInfo.PriceBTC, StringFormat='Ƀ {0:0.00000000}'}"
 						   ToolTip="Price of 1 Dogecoin in Bitcoin. Remember that the actual price of 1 Ð = 1 Ð is not influenced by this."
 							Foreground="{StaticResource Brush.Bitcoin}"/>
@@ -85,6 +85,7 @@
 				</Grid.RowDefinitions>
 
 				<Grid HorizontalAlignment="Left"
+					  Visibility="Collapsed"
 					  Width="{Binding ElementName=portfolioLayoutReference, Path=ActualWidth}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
@@ -92,7 +93,7 @@
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
 
-					<TextBlock Text="{Binding CurrentSettings.PortfolioDogecoins, StringFormat='Ð {0} × Price ='}"
+					<TextBlock Text="{Binding CurrentSettings.PortfolioDogecoins, StringFormat='Ð {0}'}"
 							   ToolTip="The amount of Dogecoins you own"
 							   Style="{StaticResource Style.TextBlock.SubCaption}"/>
 				</Grid>
@@ -105,7 +106,7 @@
 					<TextBlock Text="{Binding PortfolioPriceUSD, StringFormat='$ {0:0.0000##}'}"
 						   ToolTip="Your portfolio value in USD"
 							Foreground="{StaticResource Brush.Dollar}"/>
-					<TextBlock Text=" / " />
+					<TextBlock Text=" &#183; "/>
 					<TextBlock Text="{Binding PortfolioPriceBTC, StringFormat='Ƀ {0:0.00000000}'}"
 						   ToolTip="Your portfolio value in Bitcoin"
 							Foreground="{StaticResource Brush.Bitcoin}"/>
@@ -113,21 +114,25 @@
 			</Grid>
 			
 
-			<TextBlock Text="Trend:"
+			<TextBlock Text="Change:"
 					   Style="{StaticResource Style.TextBlock.Label}"
 					   Grid.Row="6"/>
 
 			<StackPanel Orientation="Horizontal"
 						Grid.Column="2"
 						Grid.Row="6">
-				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange24H, StringFormat='{}{0:+0.00;-0.00;0} %'}"
+				<TextBlock Text="1d "
+						   Opacity="0.5" />
+				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange24H, StringFormat='{}{0:+0.00;-0.00;0}%'}"
 						   ToolTip="The price change within the last 24 hours"
 						   Foreground="{Binding CurrentMarketInfo.PercentChange24H, Converter={StaticResource Converter.TrendBrush}}" />
-				<TextBlock Text=" (1d) / " />
-				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange7D, StringFormat='{}{0:+0.00;-0.00;0} %'}"
+				<TextBlock Text=" &#183; "/>
+				<TextBlock Text="7d "
+						   Opacity="0.5" />
+				<TextBlock Text="{Binding CurrentMarketInfo.PercentChange7D, StringFormat='{}{0:+0.00;-0.00;0}%'}"
 						   ToolTip="The price change within the last 7 days"
 						   Foreground="{Binding CurrentMarketInfo.PercentChange7D, Converter={StaticResource Converter.TrendBrush}}" />
-				<TextBlock Text=" (7d)" />
+			
 			</StackPanel>
 
 			<TextBlock Text="Volume:"

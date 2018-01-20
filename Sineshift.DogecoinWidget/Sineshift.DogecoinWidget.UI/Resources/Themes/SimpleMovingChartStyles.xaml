@@ -32,10 +32,10 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type local:SimpleMovingChart}">
-					<Grid>
+					<Grid ClipToBounds="True">
 						<Canvas Name="PART_Canvas"
-								ClipToBounds="True"
-								Margin="1"/>
+								Margin="2"
+								ClipToBounds="False" />
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>

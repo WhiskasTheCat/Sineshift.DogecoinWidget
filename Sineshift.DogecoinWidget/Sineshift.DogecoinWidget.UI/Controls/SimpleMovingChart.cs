@@ -21,6 +21,7 @@ namespace Sineshift.DogecoinWidget.UI
 		public SimpleMovingChart()
 		{
 			this.Loaded += OnLoaded;
+			this.SizeChanged += OnSizeChanged;
 		}
 
 		#region DP DollarBrush
@@ -104,6 +105,11 @@ namespace Sineshift.DogecoinWidget.UI
 		#endregion
 
 		private void OnLoaded(object sender, RoutedEventArgs e)
+		{
+			RedrawChart();
+		}
+
+		private void OnSizeChanged(object sender, SizeChangedEventArgs e)
 		{
 			RedrawChart();
 		}

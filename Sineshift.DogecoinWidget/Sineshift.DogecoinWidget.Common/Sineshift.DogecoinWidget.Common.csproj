@@ -78,6 +78,7 @@
     <Compile Include="Util\MathUtil.cs" />
     <Compile Include="Util\Guard.cs" />
     <Compile Include="Util\ReflectionUtil.cs" />
+    <Compile Include="Util\WindowUtil.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
