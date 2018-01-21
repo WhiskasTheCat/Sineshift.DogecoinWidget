@@ -20,37 +20,57 @@ namespace Sineshift.DogecoinWidget
 
 		public FrameworkElement Run()
 		{
-			// US culture for price formatting
-			var usCulture = new CultureInfo("en-US");
-			Thread.CurrentThread.CurrentCulture = usCulture;
-			Thread.CurrentThread.CurrentUICulture = usCulture;
+			try
+			{
+				Logger.Current.Info("Running bootstrapper...");
 
-			Logger.Current.Info("Running bootstrapper...");
+				// US culture for price formatting
+				var usCulture = new CultureInfo("en-US");
+				Thread.CurrentThread.CurrentCulture = usCulture;
+				Thread.CurrentThread.CurrentUICulture = usCulture;
 
-			ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(30000));	
-			Application.Current.DispatcherUnhandledException += OnDispatcherException;
-			AppDomain.CurrentDomain.UnhandledException += OnException;
+				ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(30000));
+				Application.Current.DispatcherUnhandledException += OnDispatcherException;
+				AppDomain.CurrentDomain.UnhandledException += OnException;
 
-			ServiceLocator.Current
-				.SetSingleton<ILogger>(Logger.Current)
-				.SetSingleton<SettingsService>()
-				.SetSingleton<CoinMarketService>()
-				.SetSingleton<Navigator>();
+				ServiceLocator.Current
+					.SetSingleton<ILogger>(Logger.Current)
+					.SetSingleton<SettingsService>()
+					.SetSingleton<CoinMarketService>()
+					.SetSingleton<Navigator>();
 
-			settingsService = ServiceLocator.Current.Get<SettingsService>();
+				settingsService = ServiceLocator.Current.Get<SettingsService>();
 
-			var window = Application.Current.MainWindow;
-			window.Top = settingsService.CurrentSettings.Top;
-			window.Left = settingsService.CurrentSettings.Left;
-			window.LocationChanged += OnLocationChanged;
-			window.Loaded += OnWindowLoaded;
-			Logger.Current.Info("Creating shell view...");
+				// Update the current app path if we are set as startup app
+				Logger.Current.Info("Checking autostart status...");
+				ExceptionUtil.IgnoreException(() =>
+				{
+					if (settingsService.CurrentSettings.AutoStart)
+					{
+						RegistryUtil.SetStartupApp(true);
+					}
+				});
+			
+				var window = Application.Current.MainWindow;
+				window.Top = settingsService.CurrentSettings.Top;
+				window.Left = settingsService.CurrentSettings.Left;
+				window.LocationChanged += OnLocationChanged;
+				window.Loaded += OnWindowLoaded;
+				Logger.Current.Info("Creating shell view...");
 
-			var shell = ServiceLocator.Current.Get<ShellView>();
+				var shell = ServiceLocator.Current.Get<ShellView>();
 
-			Logger.Current.Info("Bootstrapper done.");
+				Logger.Current.Info("Bootstrapper done.");
 
-			return shell;
+				return shell;
+			}
+			catch(Exception ex)
+			{
+				ExceptionUtil.LogAndShowError("There was an error initializing the app, it will be shut down.", ex);
+				Application.Current.Shutdown();
+			}
+
+			return null;
 		}
 
 		private void OnWindowLoaded(object sender, RoutedEventArgs e)
@@ -61,8 +81,7 @@ namespace Sineshift.DogecoinWidget
 			}
 			catch(Exception ex)
 			{
-				Logger.Current.Error("Could not attach widget to desktop.", ex);
-				MessageBox.Show("Could not attach widget to desktop.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+				ExceptionUtil.LogAndShowWarning("Could not attach widget to desktop.", ex);
 			}
 		}
 
@@ -87,17 +106,13 @@ namespace Sineshift.DogecoinWidget
 				return;
 			}
 
-			var text = ExceptionUtil.GetExceptionText(ex);
-			Logger.Current.Error(text);
-			ExceptionUtil.IgnoreException(() => MessageBox.Show($"A critical error occured and the application will be closed now: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error));
+			ExceptionUtil.IgnoreException(() => ExceptionUtil.LogAndShowError($"A critical error occured and the application will be closed now: {ex.Message}", ex));
 			ExceptionUtil.IgnoreException(() => Application.Current.Shutdown(1));
 		}
 
 		private void OnDispatcherException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
 		{
-			var text = ExceptionUtil.GetExceptionText(e.Exception);
-			Logger.Current.Error(text);
-			ExceptionUtil.IgnoreException(() => MessageBox.Show($"A critical error occured and the application will be closed now: {e.Exception.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error));
+			ExceptionUtil.IgnoreException(() => ExceptionUtil.LogAndShowError($"A critical error occured and the application will be closed now: {e.Exception.Message}", e.Exception));
 			ExceptionUtil.IgnoreException(() => Application.Current.Shutdown(1));
 		}
 	}

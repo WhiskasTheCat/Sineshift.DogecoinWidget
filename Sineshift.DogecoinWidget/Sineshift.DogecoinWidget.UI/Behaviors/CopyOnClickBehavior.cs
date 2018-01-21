@@ -39,8 +39,7 @@ namespace Sineshift.DogecoinWidget.UI
 					}
 					catch(Exception ex)
 					{
-						Logger.Current.Error("Could not copy address", ex);
-						MessageBox.Show("Could not copy address", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+						ExceptionUtil.LogAndShowWarning("Could not copy address", ex);
 					}
 				};
 			}

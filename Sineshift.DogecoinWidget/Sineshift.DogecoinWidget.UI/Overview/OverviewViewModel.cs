@@ -110,9 +110,6 @@ namespace Sineshift.DogecoinWidget.UI
 			{
 				Logger.Current.Debug("Getting market info");
 				var taskMarket = marketService.GetCurrentMarketInfo();
-				// TO DO: 1H chart deactivated for now, seems rather useless because of huge fluctuations
-				// Instead, possibly add live chart data from market cap that builds up over time like it was before
-				//var task1H = marketService.GetPrices1H();
 				Logger.Current.Debug("Getting prices");
 				var task1D = marketService.GetPrices1D();
 				var task7D = marketService.GetPrices7D();
@@ -132,9 +129,8 @@ namespace Sineshift.DogecoinWidget.UI
 			}
 			catch(Exception ex)
 			{
-				Logger.Current.Error("Could not update market info", ex);
 				timer.Stop();
-				MessageBox.Show($"Could not update market info.\nReason: {ex.Message}.\nThis can have several reasons:\n1. You are not connected to the internet.\n2. You need to add a firewall exception for this application.\n3. Our price data source is down.\nThe program will reattempt to get market data in 1 minute or next time it is restarted.\nYou can find the technical reason for this error in the log file located here:\n{Logger.Current.LogPath}", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+				ExceptionUtil.LogAndShowWarning("Could not update market info", ex);
 				timer.Start();
 			}
 		}

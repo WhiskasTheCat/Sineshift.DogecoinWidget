@@ -40,8 +40,7 @@ namespace Sineshift.DogecoinWidget.UI
 				}
 				catch(Exception ex)
 				{
-					MessageBox.Show("Could not navigate to address: " + ex.Message);
-					Logger.Current.Error("Could not navigate to address", ex);
+					ExceptionUtil.LogAndShowWarning("Could not navigate to address: ", ex);
 				}
 			};
 		}

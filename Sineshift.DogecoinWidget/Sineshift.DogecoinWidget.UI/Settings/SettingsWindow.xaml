@@ -43,12 +43,36 @@
 				<ColumnDefinition Width="10" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			
 			<TextBlock Text="Owned Dogecoins:"
 					    Style="{StaticResource Style.TextBlock.Label}"/>
 			<TextBox Text="{Binding CurrentSettings.PortfolioDogecoins, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
 					 Grid.Column="2"
 					 ToolTip="Enter how many Dogecoins you own for portfolio calculations"/>
+
+			<TextBlock Text="Start with windows:"
+					   Grid.Row="2"
+					    Style="{StaticResource Style.TextBlock.Label}"/>
+			<CheckBox IsChecked="{Binding CurrentSettings.AutoStart, Mode=TwoWay}"
+					 Grid.Column="2"
+					 Grid.Row="2"
+					 ToolTip="Start the widget automatically when windows is booted"/>
+
+			<TextBlock Grid.Row="4"
+					   Grid.ColumnSpan="3"
+					   TextWrapping="Wrap"
+					   Style="{StaticResource Style.TextBlock.Secondary}">
+				<Run Text="If you move this widget to a new folder after enabling 'start with windows' make sure to start it once from the new location so the auto start path is updated." />
+				<LineBreak />
+				<Run Text="You will also need to disable 'start with windows' here manually when you delete the widget." />
+			</TextBlock>
 		</Grid>
 
 		<Grid Grid.Row="2"

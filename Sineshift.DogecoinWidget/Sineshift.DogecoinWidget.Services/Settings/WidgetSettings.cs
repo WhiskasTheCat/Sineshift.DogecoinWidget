@@ -13,7 +13,14 @@ namespace Sineshift.DogecoinWidget.Services
 		double top;
 		double left;
 		bool autoStart;
+		bool isFirstStart;
 		int selectedTabIndex;
+
+		public bool IsFirstStart
+		{
+			get { return isFirstStart; }
+			set { isFirstStart = value; RaisePropertyChanged(); }
+		}
 
 		public int SelectedTabIndex
 		{

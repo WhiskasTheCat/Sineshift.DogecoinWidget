@@ -37,6 +37,15 @@
 
 	<Style TargetType="{x:Type TextBlock}"
 		   BasedOn="{StaticResource {x:Type TextBlock}}"
+		   x:Key="Style.TextBlock.Secondary">
+		<Setter Property="Opacity"
+				Value="0.5" />
+		<Setter Property="FontSize"
+				Value="12" />
+	</Style>
+	
+	<Style TargetType="{x:Type TextBlock}"
+		   BasedOn="{StaticResource {x:Type TextBlock}}"
 		   x:Key="Style.TextBlock.Label">
 		
 	</Style>

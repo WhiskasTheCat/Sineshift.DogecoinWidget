@@ -13,9 +13,15 @@ namespace Sineshift.DogecoinWidget.Common
 	{
 		public static void AttachToDesktop(Window window)
 		{
-			IntPtr hWnd = new WindowInteropHelper(window).Handle;
-			IntPtr hWndProgMan = FindWindow("Progman", "Program Manager");
+			var hWnd = new WindowInteropHelper(window).Handle;
+			var hWndProgMan = FindWindow("Progman", "Program Manager");
 			SetParent(hWnd, hWndProgMan);
+		}
+
+		public static void DetachFromDesktop(Window window)
+		{
+			var hWnd = new WindowInteropHelper(window).Handle;
+			SetParent(hWnd, IntPtr.Zero);
 		}
 
 		#region Win32

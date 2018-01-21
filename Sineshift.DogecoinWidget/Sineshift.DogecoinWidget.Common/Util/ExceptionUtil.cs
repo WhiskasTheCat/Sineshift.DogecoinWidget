@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Sineshift.DogecoinWidget.Common
 {
@@ -25,6 +26,18 @@ namespace Sineshift.DogecoinWidget.Common
 			exceptionText.AppendLine(ex.StackTrace);
 
 			return exceptionText.ToString();
+		}
+
+		public static void LogAndShowError(string message, Exception ex)
+		{
+			Logger.Current.Error(message, ex);
+			MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+		}
+
+		public static void LogAndShowWarning(string message, Exception ex)
+		{
+			Logger.Current.Error(message, ex);
+			MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 		}
 
 		public static void IgnoreException(Action action)

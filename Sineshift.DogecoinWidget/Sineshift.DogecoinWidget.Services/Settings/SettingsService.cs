@@ -12,9 +12,9 @@ namespace Sineshift.DogecoinWidget.Services
 {
 	public class SettingsService
 	{
-		readonly WidgetSettings currentSettings;
 		readonly string settingsPath;
 		readonly DispatcherTimer saveTimer;
+		WidgetSettings currentSettings;
 
 		public SettingsService()
 		{
@@ -23,17 +23,7 @@ namespace Sineshift.DogecoinWidget.Services
 			saveTimer.Interval = TimeSpan.FromMilliseconds(250);
 			saveTimer.Tick += OnSaveSettings;
 
-			try
-			{
-				currentSettings = File.Exists(settingsPath) ? JsonConvert.DeserializeObject<WidgetSettings>(File.ReadAllText(settingsPath)) : new WidgetSettings();
-			}
-			catch(Exception ex)
-			{
-				currentSettings = new WidgetSettings();
-				Logger.Current.Error("Could not load settings. Default settings will be used.", ex);
-			}
-
-			currentSettings.PropertyChanged += OnSettingsChanged;
+			LoadSettings();
 		}
 
 		public WidgetSettings CurrentSettings
@@ -50,16 +40,66 @@ namespace Sineshift.DogecoinWidget.Services
 		private void OnSaveSettings(object sender, EventArgs e)
 		{
 			saveTimer.Stop();
+			SaveSettings();
+		}
 
+		private void LoadSettings()
+		{
+			try
+			{
+				if (File.Exists(settingsPath))
+				{
+					var settingsString = File.ReadAllText(settingsPath);
+					currentSettings = JsonConvert.DeserializeObject<WidgetSettings>(settingsString);
+					currentSettings.IsFirstStart = false;
+				}
+				else
+				{
+					currentSettings = new WidgetSettings();
+					currentSettings.IsFirstStart = true;
+					SaveSettings();
+				}
+			}
+			catch (Exception ex)
+			{
+				currentSettings = new WidgetSettings();
+				ExceptionUtil.LogAndShowWarning("Could not load settings. Default settings will be used.", ex);
+			}
+
+			currentSettings.PropertyChanged += OnSettingsChanged;
+		}
+
+		private void SaveSettings()
+		{
 			try
 			{
 				var settingsString = JsonConvert.SerializeObject(currentSettings);
 				File.WriteAllText(settingsPath, settingsString);
+				UpdateAutoStartState();
 				Logger.Current.Debug("Settings saved");
 			}
 			catch (Exception ex)
 			{
-				Logger.Current.Error("Could not save settings.", ex);
+				ExceptionUtil.LogAndShowWarning("Could not save settings.", ex);
+			}
+		}
+
+		private void UpdateAutoStartState()
+		{
+			try
+			{
+				if (currentSettings.AutoStart && !RegistryUtil.IsStartupApp())
+				{
+					RegistryUtil.SetStartupApp(true);
+				}
+				else if (!currentSettings.AutoStart && RegistryUtil.IsStartupApp())
+				{
+					RegistryUtil.SetStartupApp(false);
+				}
+			}
+			catch(Exception ex)
+			{
+				ExceptionUtil.LogAndShowWarning("Could not change autostart state.", ex);
 			}
 		}
 	}
