@@ -72,6 +72,7 @@
     <Compile Include="ServiceLocation\IServiceLocator.cs" />
     <Compile Include="ServiceLocation\ServiceLocator.cs" />
     <Compile Include="Util\DateTimeUtil.cs" />
+    <Compile Include="Util\ActionUtil.cs" />
     <Compile Include="Util\EnvironmentUtil.cs" />
     <Compile Include="Util\ExceptionUtil.cs" />
     <Compile Include="Util\HashUtil.cs" />

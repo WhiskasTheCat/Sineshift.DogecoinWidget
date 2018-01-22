@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Sineshift.DogecoinWidget
 {
@@ -55,7 +56,9 @@ namespace Sineshift.DogecoinWidget
 				window.Top = settingsService.CurrentSettings.Top;
 				window.Left = settingsService.CurrentSettings.Left;
 				window.LocationChanged += OnLocationChanged;
-				window.Loaded += OnWindowLoaded;
+				//window.Loaded += OnWindowLoaded;
+				window.SourceInitialized += OnSourceInitialized;
+				window.Closing += OnWindowClosing;
 				Logger.Current.Info("Creating shell view...");
 
 				var shell = ServiceLocator.Current.Get<ShellView>();
@@ -73,15 +76,27 @@ namespace Sineshift.DogecoinWidget
 			return null;
 		}
 
-		private void OnWindowLoaded(object sender, RoutedEventArgs e)
+		private void OnSourceInitialized(object sender, EventArgs e)
 		{
 			try
 			{
 				WindowUtil.AttachToDesktop(Application.Current.MainWindow);
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				ExceptionUtil.LogAndShowWarning("Could not attach widget to desktop.", ex);
+			}
+		}
+
+		private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			try
+			{
+				WindowUtil.DetachFromDesktop(Application.Current.MainWindow);
+			}
+			catch (Exception ex)
+			{
+				Logger.Current.Warning("Could not detach widget from desktop.", ex);
 			}
 		}
 

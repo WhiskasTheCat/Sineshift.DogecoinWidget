@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Sineshift Dogecoin Widget")]
-[assembly: AssemblyDescription("A Dogecoin widget for the windows desktop")]
+[assembly: AssemblyDescription("A windows desktop widget for Dogecoin")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Copyright © 2018 Sineshift")]
+[assembly: AssemblyCopyright("Copyright © 2018 sineshift.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.0.0")]
+[assembly: AssemblyVersion("1.0.1.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

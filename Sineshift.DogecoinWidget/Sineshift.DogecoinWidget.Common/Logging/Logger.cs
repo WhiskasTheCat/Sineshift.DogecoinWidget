@@ -63,6 +63,11 @@ namespace Sineshift.DogecoinWidget.Common
 			WriteLog("Warning", message);
 		}
 
+		public void Warning(string message, Exception ex)
+		{
+			var exceptionText = ExceptionUtil.GetExceptionText(ex);
+			WriteLog("Warning", $"{message}: {exceptionText}");
+		}
 		private void WriteLog(string category, string message)
 		{
 			lock (locker)

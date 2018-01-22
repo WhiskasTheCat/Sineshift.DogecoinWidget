@@ -13,9 +13,19 @@ namespace Sineshift.DogecoinWidget.Common
 	{
 		public static void AttachToDesktop(Window window)
 		{
-			var hWnd = new WindowInteropHelper(window).Handle;
-			var hWndProgMan = FindWindow("Progman", "Program Manager");
-			SetParent(hWnd, hWndProgMan);
+			var windowHandle = new WindowInteropHelper(window).Handle;
+			if (windowHandle == IntPtr.Zero)
+			{
+				throw new InvalidOperationException("Window handle is zero.");
+			}
+			var desktopHandle = FindWindow("progman", null);
+			if (desktopHandle == IntPtr.Zero)
+			{
+				throw new InvalidOperationException("Desktop handle is zero.");
+			}
+
+			// TO DO: Test this to use in Detach instead of IntPtr.Zero
+			var originalParent = SetParent(windowHandle, desktopHandle);
 		}
 
 		public static void DetachFromDesktop(Window window)

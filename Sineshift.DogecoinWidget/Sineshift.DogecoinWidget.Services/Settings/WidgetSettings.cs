@@ -21,6 +21,11 @@ namespace Sineshift.DogecoinWidget.Services
 		{
 			IsFirstStart = true;
 			UIScale = 1.0;
+			SelectedTabIndex = 1;
+			Top = 100;
+			Left = 100;
+			AutoStart = false;
+			PortfolioDogecoins = 0;
 		}
 
 		public bool IsFirstStart
