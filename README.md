@@ -3,7 +3,7 @@
 ![DogecoinWidget](http://assets.sineshift.com/tool-dogecoin-widget-screenshot-1.png)
 
 ## About
-This is windows desktop widget that shows current market data for [Dogecoin](http://dogecoin.com/)
+This is a windows desktop widget that shows current market data for [Dogecoin](http://dogecoin.com/)
 
 ## System requirements
 [.NET 4.6.1](https://www.microsoft.com/en-US/download/details.aspx?id=49982)  
