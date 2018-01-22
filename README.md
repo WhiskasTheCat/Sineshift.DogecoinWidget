@@ -2,15 +2,18 @@
 
 ![DogecoinWidget](http://assets.sineshift.com/tool-dogecoin-widget-screenshot-1.png)
 
-## What?
-A windows desktop widget that shows current market data for [Dogecoin](http://dogecoin.com/)
+## About
+This is a windows desktop widget that shows current market data for [Dogecoin](http://dogecoin.com/)
 
-## System Requirements
+## System requirements
 [.NET 4.6.1](https://www.microsoft.com/en-US/download/details.aspx?id=49982)  
 Windows 7 SP1, 8, 8.1 or 10
 
 ## Download
-Coming soon
+[Download it from here](http://sineshift.com/tools/dogecoin-widget.html)
+
+## Usage
+The widget works as a 'portable' program without setup. Just unzip the files and execute **Dogecoin Widget.exe**. There is a setting to have the widget automatically start with windows.
 
 ## Such tip, very thanks
 I am very thankful for any donations as a motivation for continued development of this and other projects
