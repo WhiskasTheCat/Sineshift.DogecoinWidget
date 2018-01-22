@@ -12,6 +12,9 @@ Windows 7 SP1, 8, 8.1 or 10
 ## Download
 Coming soon
 
+## Usage
+Just unzip the files and execute **Dogecoin Widget.exe**. There is a setting to have the widget automatically start with windows.
+
 ## Such tip, very thanks
 I am very thankful for any donations as a motivation for continued development of this and other projects
 
