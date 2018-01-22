@@ -14,7 +14,10 @@
 		Height="320" 
 		Width="320">
 
-	<Grid>
+	<Grid Name="root">
 		<ContentControl Name="mainRegion"/>
+		<Grid.LayoutTransform>
+			<ScaleTransform x:Name="windowScale" />
+		</Grid.LayoutTransform>
 	</Grid>
 </Window>

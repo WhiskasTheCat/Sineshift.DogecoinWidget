@@ -12,9 +12,16 @@ namespace Sineshift.DogecoinWidget.Services
 		double portfolioDogecoins;
 		double top;
 		double left;
+		double uiScale;
 		bool autoStart;
 		bool isFirstStart;
 		int selectedTabIndex;
+
+		public WidgetSettings()
+		{
+			IsFirstStart = true;
+			UIScale = 1.0;
+		}
 
 		public bool IsFirstStart
 		{
@@ -26,6 +33,12 @@ namespace Sineshift.DogecoinWidget.Services
 		{
 			get { return selectedTabIndex; }
 			set { selectedTabIndex = value; RaisePropertyChanged(); }
+		}
+
+		public double UIScale
+		{
+			get { return uiScale; }
+			set { uiScale = value; RaisePropertyChanged(); }
 		}
 
 		public double PortfolioDogecoins

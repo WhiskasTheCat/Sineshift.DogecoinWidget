@@ -1,4 +1,5 @@
 ﻿using Sineshift.DogecoinWidget.Common.UI;
+using Sineshift.DogecoinWidget.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -22,8 +22,24 @@
 				Value="Transparent" />
 		<Setter Property="BorderThickness"
 				Value="1" />
+		<Setter Property="Padding"
+				Value="1,0,1,0" />
 		<Setter Property="BorderBrush"
-				Value="{StaticResource Brush.Tab.Background}" />
+				Value="{StaticResource Brush.Border.Primary}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBox}">
+					<Border Background="{TemplateBinding Background}"
+							CornerRadius="5"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}">
+						<ScrollViewer Margin="{TemplateBinding Padding}" x:Name="PART_ContentHost"
+									  HorizontalAlignment="Stretch"
+									  VerticalAlignment="Center"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
 	</Style>
 	
 	<Style TargetType="{x:Type TextBlock}"

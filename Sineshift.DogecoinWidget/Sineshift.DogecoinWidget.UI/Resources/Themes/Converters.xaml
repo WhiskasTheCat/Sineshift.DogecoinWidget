@@ -11,4 +11,6 @@
 	<cui:BoolToValueConverter x:Key="Converter.BoolToVisibility.Reverse"
 							  TrueValue="{x:Static Visibility.Collapsed}"
 							  FalseValue="{x:Static Visibility.Visible}" />
+
+	<cui:MathConverter x:Key="Converter.Math" />
 </ResourceDictionary>
