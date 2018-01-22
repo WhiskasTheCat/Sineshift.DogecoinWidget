@@ -1,6 +1,6 @@
 # Dogecoin Widget
 
-![DogecoinWidget](http://assets.sineshift.com/dogecoin-widget-screenshot.png?)
+![DogecoinWidget](http://assets.sineshift.com/tool-dogecoin-widget-screenshot-1.png)
 
 ## What?
 A windows desktop widget that shows current market data for [Dogecoin](http://dogecoin.com/)
