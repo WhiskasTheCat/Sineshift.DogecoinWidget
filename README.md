@@ -16,7 +16,7 @@ Windows 7 SP1, 8, 8.1 or 10
 [Download it from here](http://sineshift.com/tools/dogecoin-widget.html)
 
 ## Such tip, very thanks
-I am very thankful for any donations to support the continued development of this and other projects
+I am very thankful for any donations to support the continued development of this and other projects :heart:
 
 **DOGE** D986m3NRu5vU6X64iKA4JzwZhbeDKG8yEQ  
 **BTC** 1LzpJ86YKgUB5C8dQcLkJw5yRUgzCdxS4k  
