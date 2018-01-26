@@ -18,9 +18,13 @@ namespace Sineshift.DogecoinWidget.Common
 			{
 				throw new InvalidOperationException("Window handle is zero.");
 			}
-			var desktopHandle = FindWindow("Progman", null);
-			desktopHandle = FindWindowEx(desktopHandle, IntPtr.Zero, "SHELLDLL_DefVIew", null);
-			desktopHandle = FindWindowEx(desktopHandle, IntPtr.Zero, "SysListView32", null);
+			var handle1 = FindWindow("Progman", null);
+			var handle2 = FindWindowEx(handle1, IntPtr.Zero, "SHELLDLL_DefVIew", null);
+			var handle3 = FindWindowEx(handle2 == IntPtr.Zero ? handle1 : handle2, IntPtr.Zero, "SysListView32", null);
+
+			var desktopHandle = handle3 == IntPtr.Zero ?
+				(handle2 == IntPtr.Zero ? handle1 : handle2) :
+				handle3;
 
 			if (desktopHandle == IntPtr.Zero)
 			{
