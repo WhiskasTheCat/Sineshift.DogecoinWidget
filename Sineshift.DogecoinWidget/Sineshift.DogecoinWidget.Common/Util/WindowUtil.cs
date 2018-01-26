@@ -18,7 +18,10 @@ namespace Sineshift.DogecoinWidget.Common
 			{
 				throw new InvalidOperationException("Window handle is zero.");
 			}
-			var desktopHandle = FindWindow("progman", null);
+			var desktopHandle = FindWindow("Progman", null);
+			desktopHandle = FindWindowEx(desktopHandle, IntPtr.Zero, "SHELLDLL_DefVIew", null);
+			desktopHandle = FindWindowEx(desktopHandle, IntPtr.Zero, "SysListView32", null);
+
 			if (desktopHandle == IntPtr.Zero)
 			{
 				throw new InvalidOperationException("Desktop handle is zero.");
@@ -39,6 +42,8 @@ namespace Sineshift.DogecoinWidget.Common
 		private static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 		[DllImport("user32.dll", SetLastError = true)]
 		private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+		[DllImport("user32.dll", SetLastError = true)]
+		private static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string windowTitle);
 
 		private enum ABM : uint
 		{
@@ -61,35 +66,6 @@ namespace Sineshift.DogecoinWidget.Common
 			Top = 1,
 			Right = 2,
 			Bottom = 3
-		}
-
-		private static class ABS
-		{
-			public const int Autohide = 0x0000001;
-			public const int AlwaysOnTop = 0x0000002;
-		}
-
-		private static class Shell32
-		{
-			[DllImport("shell32.dll", SetLastError = true)]
-			public static extern IntPtr SHAppBarMessage(ABM dwMessage, [In] ref APPBARDATA pData);
-		}
-
-		private static class User32
-		{
-			[DllImport("user32.dll", SetLastError = true)]
-			public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-		}
-
-		[StructLayout(LayoutKind.Sequential)]
-		private struct APPBARDATA
-		{
-			public uint cbSize;
-			public IntPtr hWnd;
-			public uint uCallbackMessage;
-			public ABE uEdge;
-			public RECT rc;
-			public int lParam;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]

@@ -23,12 +23,12 @@ namespace Sineshift.DogecoinWidget
 		{
 			try
 			{
-				Logger.Current.Info("Running bootstrapper...");
-
 				// US culture for price formatting
 				var usCulture = new CultureInfo("en-US");
 				Thread.CurrentThread.CurrentCulture = usCulture;
 				Thread.CurrentThread.CurrentUICulture = usCulture;
+
+				Logger.Current.Info("Running bootstrapper...");
 
 				ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(30000));
 				Application.Current.DispatcherUnhandledException += OnDispatcherException;

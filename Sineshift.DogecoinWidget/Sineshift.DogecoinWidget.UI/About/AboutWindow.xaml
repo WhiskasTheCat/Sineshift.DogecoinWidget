@@ -77,8 +77,8 @@
 					   Style="{StaticResource Style.TextBlock.Label}" />
 			<TextBlock Grid.Row="4"
 					   Grid.Column="2">
-				<Hyperlink NavigateUri="http://sineshift.com"
-						ToolTip="http://sineshift.com"
+				<Hyperlink NavigateUri="http://sineshift.com/tools/dogecoin-widget.html"
+						ToolTip="http://sineshift.com/tools/dogecoin-widget.html"
 						local:HyperlinkBehavior.EnableHyperlinkNavigation="True">sineshift.com</Hyperlink>
 			</TextBlock>
 
