@@ -37,5 +37,11 @@ namespace Sineshift.DogecoinWidget.Common
 			var startupAssembly = Assembly.GetEntryAssembly();
 			return startupAssembly.Location;
 		}
+
+		public static bool IsWindows7()
+		{
+			var osVersion = Environment.OSVersion;
+			return osVersion.Version.Major == 6 && osVersion.Version.Minor == 1;
+		}
 	}
 }

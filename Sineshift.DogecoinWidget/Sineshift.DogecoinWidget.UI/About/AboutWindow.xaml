@@ -27,7 +27,6 @@
 					IsHitTestVisible="False"
 					Margin="10,5,10,5"/>
 
-
 		<Button Style="{StaticResource Style.Button.Lookless}"
 				Width="16"
 				Height="16"
@@ -61,7 +60,9 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="10" />
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="20" />
+				<RowDefinition Height="10" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="10" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
@@ -92,10 +93,20 @@
 						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">info@sineshift.com</Hyperlink>
 			</TextBlock>
 
-			<TextBlock Text="Code:"
-					   Grid.Row="8"
+			<TextBlock Text="Twitter:"
+					    Grid.Row="8"
 					   Style="{StaticResource Style.TextBlock.Label}" />
 			<TextBlock Grid.Row="8"
+					   Grid.Column="2">
+				<Hyperlink NavigateUri="https://twitter.com/sineshift"
+						   ToolTip="https://twitter.com/sineshift"
+						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">@sineshift</Hyperlink>
+			</TextBlock>
+			
+			<TextBlock Text="Code:"
+					   Grid.Row="10"
+					   Style="{StaticResource Style.TextBlock.Label}" />
+			<TextBlock Grid.Row="10"
 					   Grid.Column="2">
 				<Hyperlink NavigateUri="https://github.com/WhiskasTheCat/Sineshift.DogecoinWidget"
 						   ToolTip="https://github.com/WhiskasTheCat/Sineshift.DogecoinWidget"
@@ -103,9 +114,9 @@
 			</TextBlock>
 
 			<TextBlock Text="Data sources:"
-					    Grid.Row="10"
+					    Grid.Row="12"
 					   Style="{StaticResource Style.TextBlock.Label}" />
-			<TextBlock Grid.Row="10"
+			<TextBlock Grid.Row="12"
 					   Grid.Column="2">
 				<Hyperlink NavigateUri="https://coinmarketcap.com"
 						   ToolTip="The general market data is taken from coinmarketcap.com"
@@ -117,9 +128,9 @@
 			</TextBlock>
 
 			<TextBlock Text="Licenses:"
-					    Grid.Row="12"
+					    Grid.Row="14"
 					   Style="{StaticResource Style.TextBlock.Label}" />
-			<TextBlock Grid.Row="12"
+			<TextBlock Grid.Row="14"
 					   Grid.Column="2"
 					   TextWrapping="Wrap">
 				<Run>Used libraries are included under the following licenses:</Run>
@@ -141,7 +152,7 @@
 			</TextBlock>
 
 			<StackPanel Grid.ColumnSpan="3"
-					Grid.Row="14">
+					Grid.Row="16">
 				<StackPanel Orientation="Horizontal"
 						Margin="0,0,0,10">
 					<TextBlock Text="If you " 

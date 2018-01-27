@@ -87,6 +87,12 @@ namespace Sineshift.DogecoinWidget
 		{
 			try
 			{
+				// Attaching to desktop is currently bugged on Windows 7
+				// Unknown if its fixable, so we deactivate it on Windows 7 for the time being
+				if (EnvironmentUtil.IsWindows7())
+				{
+					return;
+				}
 				WindowUtil.AttachToDesktop(Application.Current.MainWindow);
 			}
 			catch (Exception ex)

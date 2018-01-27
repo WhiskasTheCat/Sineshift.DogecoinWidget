@@ -17,17 +17,25 @@ namespace Sineshift.DogecoinWidget.Services
 		bool isFirstStart;
 		bool acceptedLicense;
 		int selectedTabIndex;
+		WidgetPlacement placement;
 
 		public WidgetSettings()
 		{
-			IsFirstStart = true;
-			AcceptedLicense = false;
-			UIScale = 1.0;
-			SelectedTabIndex = 1;
-			Top = 100;
-			Left = 100;
-			AutoStart = false;
-			PortfolioDogecoins = 0;
+			isFirstStart = true;
+			acceptedLicense = false;
+			uiScale = 1.0;
+			selectedTabIndex = 1;
+			top = 100;
+			left = 100;
+			autoStart = false;
+			portfolioDogecoins = 0;
+			placement = WidgetPlacement.OnDesktop;
+		}
+
+		public WidgetPlacement Placement
+		{
+			get { return placement; }
+			set { placement = value; RaisePropertyChanged(); }
 		}
 
 		public bool IsFirstStart

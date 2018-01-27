@@ -80,6 +80,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Settings\SettingsService.cs" />
+    <Compile Include="Settings\WidgetPlacement.cs" />
     <Compile Include="Settings\WidgetSettings.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
