@@ -34,6 +34,11 @@ namespace Sineshift.DogecoinWidget
 			settingsService = ServiceLocator.Current.Get<SettingsService>();
 			settingsService.CurrentSettings.PropertyChanged += OnSettingsChanged;
 			UpdateWindowScale();
+
+			if (!settingsService.CurrentSettings.AcceptedLicense)
+			{
+				Application.Current.Shutdown();
+			}
 		}
 
 		private void OnSettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

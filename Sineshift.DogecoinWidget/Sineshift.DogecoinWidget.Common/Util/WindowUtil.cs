@@ -13,7 +13,9 @@ namespace Sineshift.DogecoinWidget.Common
 	{
 		public static void AttachToDesktop(Window window)
 		{
-			var windowHandle = new WindowInteropHelper(window).Handle;
+			var interop = new WindowInteropHelper(window);
+			var windowHandle = interop.EnsureHandle();
+
 			if (windowHandle == IntPtr.Zero)
 			{
 				throw new InvalidOperationException("Window handle is zero.");
@@ -26,13 +28,16 @@ namespace Sineshift.DogecoinWidget.Common
 				(handle2 == IntPtr.Zero ? handle1 : handle2) :
 				handle3;
 
+			LogWin32Error($"FindWindow error code");
+
 			if (desktopHandle == IntPtr.Zero)
 			{
 				throw new InvalidOperationException("Desktop handle is zero.");
 			}
 
-			// TO DO: Test this to use in Detach instead of IntPtr.Zero
-			var originalParent = SetParent(windowHandle, desktopHandle);
+			SetParent(windowHandle, desktopHandle);
+
+			LogWin32Error($"SetParent error code");
 		}
 
 		public static void DetachFromDesktop(Window window)
@@ -41,8 +46,17 @@ namespace Sineshift.DogecoinWidget.Common
 			SetParent(hWnd, IntPtr.Zero);
 		}
 
+		private static void LogWin32Error(string text)
+		{
+			var errorCode = Marshal.GetLastWin32Error();
+			if (errorCode != 0)
+			{
+				Logger.Current.Warning($"{text}: {errorCode}");
+			}
+		}
+
 		#region Win32
-		[DllImport("user32.dll")]
+		[DllImport("user32.dll", SetLastError = true)]
 		private static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 		[DllImport("user32.dll", SetLastError = true)]
 		private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);

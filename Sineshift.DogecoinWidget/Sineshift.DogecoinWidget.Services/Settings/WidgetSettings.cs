@@ -15,11 +15,13 @@ namespace Sineshift.DogecoinWidget.Services
 		double uiScale;
 		bool autoStart;
 		bool isFirstStart;
+		bool acceptedLicense;
 		int selectedTabIndex;
 
 		public WidgetSettings()
 		{
 			IsFirstStart = true;
+			AcceptedLicense = false;
 			UIScale = 1.0;
 			SelectedTabIndex = 1;
 			Top = 100;
@@ -32,6 +34,12 @@ namespace Sineshift.DogecoinWidget.Services
 		{
 			get { return isFirstStart; }
 			set { isFirstStart = value; RaisePropertyChanged(); }
+		}
+
+		public bool AcceptedLicense
+		{
+			get { return acceptedLicense; }
+			set { acceptedLicense = value; RaisePropertyChanged(); }
 		}
 
 		public int SelectedTabIndex

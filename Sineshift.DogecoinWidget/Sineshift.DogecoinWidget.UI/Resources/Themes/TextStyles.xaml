@@ -33,9 +33,10 @@
 							CornerRadius="5"
 							BorderBrush="{TemplateBinding BorderBrush}"
 							BorderThickness="{TemplateBinding BorderThickness}">
-						<ScrollViewer Margin="{TemplateBinding Padding}" x:Name="PART_ContentHost"
+						<ScrollViewer Margin="{TemplateBinding Padding}" 
+									  x:Name="PART_ContentHost"
 									  HorizontalAlignment="Stretch"
-									  VerticalAlignment="Center"/>
+									  VerticalAlignment="Top"/>
 					</Border>
 				</ControlTemplate>
 			</Setter.Value>

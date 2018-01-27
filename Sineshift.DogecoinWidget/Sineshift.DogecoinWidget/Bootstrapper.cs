@@ -56,9 +56,16 @@ namespace Sineshift.DogecoinWidget
 				window.Top = settingsService.CurrentSettings.Top;
 				window.Left = settingsService.CurrentSettings.Left;
 				window.LocationChanged += OnLocationChanged;
-				//window.Loaded += OnWindowLoaded;
 				window.SourceInitialized += OnSourceInitialized;
 				window.Closing += OnWindowClosing;
+
+				if (!settingsService.CurrentSettings.AcceptedLicense)
+				{
+					Logger.Current.Info("Showing license");
+					var setupWindow = ServiceLocator.Current.Get<SetupWindow>();
+					setupWindow.ShowDialog();
+				}
+
 				Logger.Current.Info("Creating shell view...");
 
 				var shell = ServiceLocator.Current.Get<ShellView>();

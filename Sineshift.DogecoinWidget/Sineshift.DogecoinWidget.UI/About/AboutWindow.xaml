@@ -61,7 +61,7 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="10" />
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="10" />
+				<RowDefinition Height="20" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
@@ -122,11 +122,7 @@
 			<TextBlock Grid.Row="12"
 					   Grid.Column="2"
 					   TextWrapping="Wrap">
-				<Run>By using this program you agree to its </Run>
-				<Hyperlink NavigateUri="https://github.com/WhiskasTheCat/Sineshift.DogecoinWidget/blob/master/LICENSE"
-						   ToolTip="https://github.com/WhiskasTheCat/Sineshift.DogecoinWidget/blob/master/LICENSE"
-						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">license terms</Hyperlink>
-				<Run>. Used libraries are included under the following licenses:</Run>
+				<Run>Used libraries are included under the following licenses:</Run>
 				<Hyperlink NavigateUri="https://www.codeproject.com/info/cpol10.aspx"
 						   ToolTip="https://www.codeproject.com/info/cpol10.aspx"
 						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">CPOL</Hyperlink>
@@ -143,10 +139,9 @@
 						   ToolTip="https://opensource.org/licenses/MIT"
 						   local:HyperlinkBehavior.EnableHyperlinkNavigation="True">MIT</Hyperlink>
 			</TextBlock>
-			
+
 			<StackPanel Grid.ColumnSpan="3"
 					Grid.Row="14">
-			
 				<StackPanel Orientation="Horizontal"
 						Margin="0,0,0,10">
 					<TextBlock Text="If you " 
