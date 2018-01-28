@@ -21,8 +21,15 @@ namespace Sineshift.DogecoinWidget.UI
 			navigator.Navigate<OverviewView>();
 	
 			CloseApplicationCommand = new RelayCommand(() => Application.Current.Shutdown());
-			ShowAboutCommand = new RelayCommand(ShowAboutDialog);
-			ShowSettingsCommand = new RelayCommand(ShowSettingsDialog);
+			ShowAboutCommand = new RelayCommand(ShowAboutDialog, IsMainWindowLoaded);
+			ShowSettingsCommand = new RelayCommand(ShowSettingsDialog, IsMainWindowLoaded);
+			ShowWidgetCommand = new RelayCommand(ShowWidget, IsMainWindowLoaded);
+		}
+
+		public ICommand ShowWidgetCommand
+		{
+			get;
+			private set;
 		}
 
 		public ICommand ShowAboutCommand
@@ -43,6 +50,11 @@ namespace Sineshift.DogecoinWidget.UI
 			private set;
 		}
 
+		private bool IsMainWindowLoaded()
+		{
+			return Application.Current.MainWindow != null && Application.Current.MainWindow.IsLoaded;
+		}
+
 		private void ShowAboutDialog()
 		{
 			var dialog = ServiceLocator.Current.Get<AboutWindow>();
@@ -55,6 +67,16 @@ namespace Sineshift.DogecoinWidget.UI
 			var dialog = ServiceLocator.Current.Get<SettingsWindow>();
 			dialog.Owner = Application.Current.MainWindow;
 			dialog.ShowDialog();
+		}
+
+		private void ShowWidget()
+		{
+			var window = Application.Current.MainWindow;
+			if (window.WindowState != WindowState.Normal)
+			{
+				window.WindowState = WindowState.Normal;
+			}
+			window.Activate();
 		}
 	}
 }

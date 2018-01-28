@@ -19,7 +19,7 @@ namespace Sineshift.DogecoinWidget
 	{
 		SettingsService settingsService;
 
-		public FrameworkElement Run()
+		public MainWindow Run()
 		{
 			try
 			{
@@ -52,27 +52,17 @@ namespace Sineshift.DogecoinWidget
 					}
 				});
 			
-				var window = Application.Current.MainWindow;
-				window.Top = settingsService.CurrentSettings.Top;
-				window.Left = settingsService.CurrentSettings.Left;
-				window.LocationChanged += OnLocationChanged;
-				window.SourceInitialized += OnSourceInitialized;
-				window.Closing += OnWindowClosing;
-
-				if (!settingsService.CurrentSettings.AcceptedLicense)
-				{
-					Logger.Current.Info("Showing license");
-					var setupWindow = ServiceLocator.Current.Get<SetupWindow>();
-					setupWindow.ShowDialog();
-				}
-
-				Logger.Current.Info("Creating shell view...");
-
-				var shell = ServiceLocator.Current.Get<ShellView>();
+				var mainWindow = ServiceLocator.Current.Get<MainWindow>();
+				mainWindow.Top = settingsService.CurrentSettings.Top;
+				mainWindow.Left = settingsService.CurrentSettings.Left;
+				mainWindow.LocationChanged += OnWindowLocationChanged;
+				mainWindow.SourceInitialized += OnWindowSourceInitialized;
+				mainWindow.Closing += OnWindowClosing;
+				mainWindow.StateChanged += OnWindowStateChanged;
 
 				Logger.Current.Info("Bootstrapper done.");
 
-				return shell;
+				return mainWindow;
 			}
 			catch(Exception ex)
 			{
@@ -83,12 +73,45 @@ namespace Sineshift.DogecoinWidget
 			return null;
 		}
 
-		private void OnSourceInitialized(object sender, EventArgs e)
+		public bool EnsureLicense()
+		{
+			if (!settingsService.CurrentSettings.AcceptedLicense)
+			{
+				Logger.Current.Info("Showing license");
+				var setupWindow = ServiceLocator.Current.Get<SetupWindow>();
+				//setupWindow.Owner = Application.Current.MainWindow;
+				setupWindow.ShowDialog();
+			}
+
+			return settingsService.CurrentSettings.AcceptedLicense;
+		}
+
+		// We only allow "normal" state
+		private void OnWindowStateChanged(object sender, EventArgs e)
+		{
+			var window = Application.Current.MainWindow;
+			if (window.WindowState != WindowState.Normal)
+			{
+				Logger.Current.Warning($"Window state changed to {window.WindowState}, this should not happen.");
+				Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+				{
+					window.WindowState = WindowState.Normal;
+					window.Activate();
+				}), DispatcherPriority.Background, null);
+				
+			}
+			else
+			{
+				window.Activate();
+			}
+		}
+
+		private void OnWindowSourceInitialized(object sender, EventArgs e)
 		{
 			try
 			{
 				// Attaching to desktop is currently bugged on Windows 7
-				// Unknown if its fixable, so we deactivate it on Windows 7 for the time being
+				// Unknown if its fixable, so we deactivate it there for the time being
 				if (EnvironmentUtil.IsWindows7())
 				{
 					return;
@@ -113,7 +136,7 @@ namespace Sineshift.DogecoinWidget
 			}
 		}
 
-		private void OnLocationChanged(object sender, EventArgs e)
+		private void OnWindowLocationChanged(object sender, EventArgs e)
 		{
 			var window = Application.Current.MainWindow;
 

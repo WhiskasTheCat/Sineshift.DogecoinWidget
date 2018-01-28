@@ -22,6 +22,10 @@
                     PopupActivation="DoubleClick">
 			<tb:TaskbarIcon.ContextMenu>
 				<ContextMenu>
+					<MenuItem Header="Show widget"
+							  ToolTip="Attempts to show the widget if it got minimized by accident"
+							  Command="{Binding ShowWidgetCommand}" />
+					<Separator />
 					<MenuItem Header="Many settings"
 							  Command="{Binding ShowSettingsCommand}" />
 					<MenuItem Header="Much about"
@@ -40,7 +44,6 @@
 
 			<StackPanel Orientation="Horizontal"
 						HorizontalAlignment="Right">
-				<!-- We will likely need this setting button in the future, so I didn't delete it yet -->
 				<Button Style="{StaticResource Style.Button.Lookless}"
 						Command="{Binding ShowSettingsCommand}"
 						Width="16"

@@ -1,5 +1,6 @@
 ﻿using Sineshift.DogecoinWidget.Common;
 using Sineshift.DogecoinWidget.Services;
+using Sineshift.DogecoinWidget.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,21 +25,16 @@ namespace Sineshift.DogecoinWidget
 	{
 		SettingsService settingsService;
 
-		public MainWindow()
+		public MainWindow(ShellView shellView, SettingsService settingsService)
 		{
 			InitializeComponent();
 
-			this.mainRegion.Content = new Bootstrapper().Run();
+			this.mainRegion.Content = shellView;
+			this.settingsService = settingsService;
 
 			// Binding settings to window doesn't work for some reason, so we set it here
-			settingsService = ServiceLocator.Current.Get<SettingsService>();
 			settingsService.CurrentSettings.PropertyChanged += OnSettingsChanged;
 			UpdateWindowScale();
-
-			if (!settingsService.CurrentSettings.AcceptedLicense)
-			{
-				Application.Current.Shutdown();
-			}
 		}
 
 		private void OnSettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
