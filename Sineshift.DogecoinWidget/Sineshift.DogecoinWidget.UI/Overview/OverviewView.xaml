@@ -201,8 +201,7 @@
 		<Grid Grid.RowSpan="3"
 			  Visibility="{Binding IsDataLoaded, Converter={StaticResource Converter.BoolToVisibility.Reverse}}"
 			  VerticalAlignment="Center"
-			  HorizontalAlignment="Center"
-			  IsHitTestVisible="False">
+			  HorizontalAlignment="Center">
 			<StackPanel Orientation="Horizontal">
 				<Image Source="{StaticResource Image.Dogecoin}"
 					   Height="24"
@@ -228,7 +227,12 @@
 						</EventTrigger>
 					</Image.Triggers>
 				</Image>
-				<TextBlock Text="Loading much data..."
+				<TextBlock Text="{Binding StatusText}"
+						   ToolTip="{Binding StatusText}"
+						   TextWrapping="Wrap"
+						   MaxWidth="250"
+						   MaxHeight="100"
+						   TextTrimming="CharacterEllipsis"
 						   VerticalAlignment="Center" />
 			</StackPanel>
 		</Grid>

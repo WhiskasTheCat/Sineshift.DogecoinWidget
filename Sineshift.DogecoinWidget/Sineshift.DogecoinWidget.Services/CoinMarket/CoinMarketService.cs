@@ -14,12 +14,13 @@ namespace Sineshift.DogecoinWidget.Services
 		readonly ICoinmarketcapClient marketCapClient;
 		readonly CryptoCompareClient cryptoCompareClient;
 		readonly CultureInfo usCulture = new CultureInfo("en-US");
-		readonly IReadOnlyList<string> exchanges = new List<string>() { "Bittrex" };
+		readonly string exchange = "Bittrex";
 
 		public CoinMarketService()
 		{
 			marketCapClient = new CoinmarketcapClient();
 			cryptoCompareClient = new CryptoCompareClient();
+			exchange = "Bittrex";
 		}
 
 		public Task<CoinMarketInfo> GetCurrentMarketInfo()
@@ -45,10 +46,10 @@ namespace Sineshift.DogecoinWidget.Services
 
 		public async Task<IReadOnlyList<BitcoinDollarPair>> GetPrices1H()
 		{
-			var dogeBtcTask = cryptoCompareClient.History.MinuteAsync("DOGE", "BTC", null, exchanges, DateTime.UtcNow);
+			var dogeBtcTask = cryptoCompareClient.History.MinuteAsync("DOGE", "BTC", null, exchange, DateTime.UtcNow);
 
 			// We don't get DOGE-USD directly from the API, so we will do a conversion later. The conversion flag in the API doesn't work either.
-			var btcUsdTask = cryptoCompareClient.History.MinuteAsync("BTC", "USD", null, exchanges, DateTime.UtcNow);
+			var btcUsdTask = cryptoCompareClient.History.MinuteAsync("BTC", "USD", null, exchange, DateTime.UtcNow);
 
 			await Task.WhenAll(dogeBtcTask, btcUsdTask);
 
@@ -59,10 +60,10 @@ namespace Sineshift.DogecoinWidget.Services
 
 		public async Task<IReadOnlyList<BitcoinDollarPair>> GetPrices1D()
 		{
-			var dogeBtcTask = cryptoCompareClient.History.HourAsync("DOGE", "BTC", null, exchanges, DateTime.UtcNow);
+			var dogeBtcTask = cryptoCompareClient.History.HourAsync("DOGE", "BTC", null, exchange, DateTime.UtcNow);
 
 			// We don't get DOGE-USD directly from the API, so we will do a conversion later. The conversion flag in the API doesn't work either.
-			var btcUsdTask = cryptoCompareClient.History.HourAsync("BTC", "USD", null, exchanges, DateTime.UtcNow);
+			var btcUsdTask = cryptoCompareClient.History.HourAsync("BTC", "USD", null, exchange, DateTime.UtcNow);
 
 			await Task.WhenAll(dogeBtcTask, btcUsdTask);
 
@@ -76,10 +77,10 @@ namespace Sineshift.DogecoinWidget.Services
 
 		public async Task<IReadOnlyList<BitcoinDollarPair>> GetPrices7D()
 		{
-			var dogeBtcTask = cryptoCompareClient.History.HourAsync("DOGE", "BTC", null, exchanges, DateTime.UtcNow);
+			var dogeBtcTask = cryptoCompareClient.History.HourAsync("DOGE", "BTC", null, exchange, DateTime.UtcNow);
 
 			// We don't get DOGE-USD directly from the API, so we will do a conversion later. The conversion flag in the API doesn't work either.
-			var btcUsdTask = cryptoCompareClient.History.HourAsync("BTC", "USD", null, exchanges, DateTime.UtcNow);
+			var btcUsdTask = cryptoCompareClient.History.HourAsync("BTC", "USD", null, exchange, DateTime.UtcNow);
 
 			await Task.WhenAll(dogeBtcTask, btcUsdTask);
 
@@ -90,10 +91,10 @@ namespace Sineshift.DogecoinWidget.Services
 
 		public async Task<IReadOnlyList<BitcoinDollarPair>> GetPrices1M()
 		{
-			var dogeBtcTask = cryptoCompareClient.History.DayAsync("DOGE", "BTC", null, exchanges, DateTime.UtcNow);
+			var dogeBtcTask = cryptoCompareClient.History.DayAsync("DOGE", "BTC", null, exchange, DateTime.UtcNow);
 
 			// We don't get DOGE-USD directly from the API, so we will do a conversion later. The conversion flag in the API doesn't work either.
-			var btcUsdTask = cryptoCompareClient.History.DayAsync("BTC", "USD", null, exchanges, DateTime.UtcNow);
+			var btcUsdTask = cryptoCompareClient.History.DayAsync("BTC", "USD", null, exchange, DateTime.UtcNow);
 
 			await Task.WhenAll(dogeBtcTask, btcUsdTask);
 

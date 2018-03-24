@@ -23,6 +23,7 @@ namespace Sineshift.DogecoinWidget.UI
 		IReadOnlyList<BitcoinDollarPair> prices7D;
 		IReadOnlyList<BitcoinDollarPair> prices1M;
 		bool isDataLoaded;
+		string statusText;
 
 		public OverviewViewModel(CoinMarketService marketService, SettingsService settingsService)
 		{
@@ -36,6 +37,12 @@ namespace Sineshift.DogecoinWidget.UI
 			timer.Tick += OnTick;
 
 			UpdateMarketInfo();
+		}
+
+		public string StatusText
+		{
+			get { return statusText; }
+			private set { statusText = value; RaisePropertyChanged(); }
 		}
 
 		public bool IsDataLoaded
@@ -106,6 +113,9 @@ namespace Sineshift.DogecoinWidget.UI
 
 		private async void UpdateMarketInfo()
 		{
+			IsDataLoaded = false;
+			StatusText = "Loading much data...";
+
 			try
 			{
 				Logger.Current.Debug("Getting market info");
@@ -130,7 +140,9 @@ namespace Sineshift.DogecoinWidget.UI
 			catch(Exception ex)
 			{
 				timer.Stop();
-				ExceptionUtil.LogAndShowWarning("Could not update market info", ex);
+				StatusText = $"Could not update market info and will try again in 1 minute: {ex.Message}.";
+				//ExceptionUtil.LogAndShowWarning("Could not update market info", ex);
+				Logger.Current.Error("Could not update market info", ex);
 				timer.Start();
 			}
 		}
